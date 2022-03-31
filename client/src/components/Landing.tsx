@@ -19,11 +19,7 @@ const Landing: React.FC = () => {
     }, 100);
   }, [navigate]);
 
-  const images = [
-    "https://planete.onrender.com/img/outside(7).JPG",
-    "https://planete.onrender.com/img/outside%20(4).JPG",
-    "https://planete.onrender.com/img/room%20(5).JPG",
-  ];
+  const images = ["/landing1.JPG", "/landing1.JPG", "/landing1.JPG"];
   const words = ["Hotel", "Restaurant", "Night Club"];
 
   return (
