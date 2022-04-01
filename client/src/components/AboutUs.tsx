@@ -26,7 +26,7 @@ const AboutUs: React.FC = () => {
   return (
     <div
       id="about"
-      className="relative min-h-screen bg-gradient-to-b from-blue-100 to-blue-200 py-20 px-4 sm:px-6 lg:px-8 lg:py-40"
+      className="relative min-h-screen  py-20 px-4 sm:px-6 lg:px-8 lg:py-40"
     >
       <motion.div
         className="max-w-7xl mx-auto"
@@ -39,7 +39,7 @@ const AboutUs: React.FC = () => {
           className="text-center text-4xl sm:text-5xl lg:text-6xl font-bold mb-12"
         >
           About
-          <Highlight className="text-white"> Us</Highlight>
+          <Highlight className="text-white bg-cyan-800"> Us</Highlight>
         </motion.h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -89,7 +89,7 @@ const AboutUs: React.FC = () => {
             transition={{ type: "spring", stiffness: 300 }}
           >
             <img
-              src="https://planete.onrender.com/img/outside(7).JPG"
+              src="/landing2.JPG"
               alt="Planete Hotel"
               className="rounded-lg shadow-2xl"
             />
