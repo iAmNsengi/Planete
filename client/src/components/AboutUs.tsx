@@ -58,7 +58,7 @@ const AboutUs: React.FC = () => {
             </p>
 
             <motion.div
-              className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 rounded-lg shadow-lg"
+              className="bg-cyan-800  p-6 rounded-lg shadow-lg"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
@@ -108,7 +108,7 @@ const AboutUs: React.FC = () => {
         <motion.div variants={itemVariants} className="mt-12 text-center">
           <a
             href="#bookARoom"
-            className="inline-block bg-white text-black font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition duration-300"
+            className="inline-block bg-cyan-800 border border-cyan-800 hover:bg-transparent hover:text-cyan-800 text-white font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition duration-300"
           >
             Book Your Stay Now
           </a>
