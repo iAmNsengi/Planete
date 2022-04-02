@@ -19,7 +19,7 @@ const Landing: React.FC = () => {
     }, 100);
   }, [navigate]);
 
-  const images = ["/landing1.JPG", "/landing1.JPG", "/landing1.JPG"];
+  const images = ["/landing1.JPG", "/landing2.JPG", "/landing3.JPG"];
   const words = ["Hotel", "Restaurant", "Night Club"];
 
   return (
