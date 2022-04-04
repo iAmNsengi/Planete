@@ -97,10 +97,11 @@ const Gallery: React.FC = () => {
 
   return (
     <>
-      {loading && <p className="text-center text-2xl">Loading images...</p>}
-      {!loading && (
+      {loading ? (
+        <p className="text-center text-2xl">Loading images...</p>
+      ) : (
         <main className="bg-neutral-200" id="gallery">
-          <section className="px-4 py-24 mx-auto max-w-7xl ">
+          <section className="px-4 py-24 mx-auto max-w-7xl">
             <div className="w-full mx-auto text-left md:w-11/12 xl:w-9/12 md:text-center">
               <h2 className="text-center text-black text-5xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
                 Gall
@@ -109,7 +110,6 @@ const Gallery: React.FC = () => {
               </h2>
             </div>
           </section>
-
           <Pagination
             totalPages={totalPages}
             setCurrentPage={setCurrentPage}
@@ -199,7 +199,6 @@ const Gallery: React.FC = () => {
                   </div>
                 </div>
               )}
-             
             </div>
           </section>
         </main>
