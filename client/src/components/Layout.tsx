@@ -1,5 +1,5 @@
 import AboutUs from "./AboutUs";
-import Gallery from "./Gallery";
+import Gallery from "./Gallery/Gallery";
 import Landing from "./Landing";
 import Navbar from "./Navbar";
 import ContactUs from "./ContactUs";
@@ -16,7 +16,7 @@ const Layout = () => {
       <Landing />
       <AboutUs />
       <Gallery />
-      <Amenities/>
+      <Amenities />
       <OurRooms />
       <Map />
       <ContactUs />

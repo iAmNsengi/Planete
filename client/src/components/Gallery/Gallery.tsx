@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Highlight } from "./ui/hero-highlight";
+import { Highlight } from "../ui/hero-highlight";
+import Pagination from "./Pagination";
 
 interface Image {
   src: string;
@@ -101,38 +102,19 @@ const Gallery: React.FC = () => {
         <main className="bg-neutral-200" id="gallery">
           <section className="px-4 py-24 mx-auto max-w-7xl ">
             <div className="w-full mx-auto text-left md:w-11/12 xl:w-9/12 md:text-center">
-              <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-700 to-white dark:from-neutral-600 dark:to-white text-5xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
+              <h2 className="text-center text-black text-5xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
                 Gall
-                <Highlight className="text-black dark:text-white">
-                  ery
-                </Highlight>
+                <Highlight className="bg-cyan-800 text-white">ery</Highlight>
                 <br />
               </h2>
             </div>
           </section>
 
-          {/* Pagination Controls at the Top */}
-          <div className="flex justify-center animate-fade-in pb-10 -mt-20">
-            <button
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
-              disabled={currentPage === 0}
-              className="px-4 py-2 mx-2 text-orange-500 border border-orange-500 rounded transition duration-300"
-            >
-              Previous
-            </button>
-            <span className="mx-2 text-lg">
-              Page {currentPage + 1} of {totalPages}
-            </span>
-            <button
-              onClick={() =>
-                setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1))
-              }
-              disabled={currentPage === totalPages - 1}
-              className="px-4 py-2 mx-2 text-orange-500 border border-orange-500 rounded transition duration-300"
-            >
-              Next
-            </button>
-          </div>
+          <Pagination
+            totalPages={totalPages}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
 
           <section>
             <div className="w-full h-full min-h-screen select-none">
@@ -217,30 +199,7 @@ const Gallery: React.FC = () => {
                   </div>
                 </div>
               )}
-              {/* Pagination Controls at the Bottom */}
-              <div className="flex justify-center mt-4 animate-fade-in py-10">
-                <button
-                  onClick={() =>
-                    setCurrentPage((prev) => Math.max(prev - 1, 0))
-                  }
-                  disabled={currentPage === 0}
-                  className="px-4 py-2 mx-2 text-orange-500 border border-orange-500 rounded transition duration-300"
-                >
-                  Previous
-                </button>
-                <span className="mx-2 text-lg">
-                  Page {currentPage + 1} of {totalPages}
-                </span>
-                <button
-                  onClick={() =>
-                    setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1))
-                  }
-                  disabled={currentPage === totalPages - 1}
-                  className={`px-4 py-2 mx-2 text-orange-500 border border-orange-500 transition duration-300 rounded`}
-                >
-                  Next
-                </button>
-              </div>
+             
             </div>
           </section>
         </main>
