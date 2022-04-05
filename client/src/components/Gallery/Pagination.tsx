@@ -1,3 +1,6 @@
+import { IconMailForward } from "@tabler/icons-react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
 interface PaginationProps {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   currentPage: number;
@@ -13,9 +16,9 @@ const Pagination = ({
       <button
         onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
         disabled={currentPage === 0}
-        className="px-4 py-2 mx-2 cursor-pointer border border-cyan-800 text-cyan-800 rounded transition duration-300"
+        className="px-4 py-2 mx-2 cursor-pointer border disabled:cursor-not-allowed border-cyan-800 text-cyan-800 rounded transition duration-300"
       >
-        Previous
+        <FaChevronLeft />
       </button>
       <span className="mx-2 text-lg">
         {currentPage + 1} of {totalPages}
@@ -25,9 +28,9 @@ const Pagination = ({
           setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1))
         }
         disabled={currentPage === totalPages - 1}
-        className={`px-4 py-2 mx-2 border-cyan-800 text-cyan-800 border transition duration-300 rounded`}
+        className={`px-4 py-2 mx-2 disabled:cursor-not-allowed border-cyan-800 text-cyan-800 border transition duration-300 rounded`}
       >
-        Next
+        <FaChevronRight />
       </button>
     </div>
   );
