@@ -1,4 +1,3 @@
-import { IconMailForward } from "@tabler/icons-react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 interface PaginationProps {
