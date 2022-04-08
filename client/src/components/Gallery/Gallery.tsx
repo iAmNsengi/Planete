@@ -127,7 +127,13 @@ const Gallery: React.FC = () => {
                   className="grid gap-2 lg:gap-4 grid-cols-2 lg:grid-cols-3"
                 >
                   {paginatedImages.map((image, index) => (
-                    <li key={index}>
+                    <li
+                      key={index}
+                      className="relative group cursor-zoom-in"
+                      onClick={() =>
+                        openGallery(currentPage * imagesPerPage + index)
+                      }
+                    >
                       <img
                         onClick={() =>
                           openGallery(currentPage * imagesPerPage + index)
@@ -136,7 +142,11 @@ const Gallery: React.FC = () => {
                         className="object-cover select-none w-full h-auto bg-gray-200 rounded-xl cursor-zoom-in aspect-[5/6] lg:aspect-[1/3] xl:aspect-[3/4]"
                         alt={image.alt}
                       />
-                      <p className="text-center">{image.description}</p>
+                      <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                        <p className="text-white text-center px-4">
+                          {image.description}
+                        </p>
+                      </div>
                     </li>
                   ))}
                 </ul>
@@ -201,6 +211,11 @@ const Gallery: React.FC = () => {
               )}
             </div>
           </section>
+          <Pagination
+            totalPages={totalPages}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
         </main>
       )}
     </>
