@@ -1,26 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Highlight } from "./ui/hero-highlight";
 
 const OurRooms: React.FC = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-    },
-  };
-
   return (
     <div
       id="rooms"
@@ -28,21 +10,18 @@ const OurRooms: React.FC = () => {
     >
       <motion.div
         className="max-w-7xl mx-auto"
-        variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <motion.h1
-          variants={itemVariants}
-          className="text-center text-4xl sm:text-5xl lg:text-6xl font-bold mb-12"
-        >
-          Our Rooms
+        <motion.h1 className="text-center text-4xl sm:text-5xl lg:text-6xl font-bold mb-12 py-10">
+          Our
+          <Highlight className={"bg-cyan-800 text-white"}> Rooms</Highlight>
         </motion.h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 ">
           {[
             {
-              imgSrc: "https://planete.onrender.com/img/room%20(5).JPG",
+              imgSrc: "/landing3.JPG",
               title: "Deluxe Room",
               description: "Enjoy luxury and comfort in our deluxe rooms.",
               price: "$90/night",
@@ -62,8 +41,7 @@ const OurRooms: React.FC = () => {
           ].map((room, index) => (
             <motion.div
               key={index}
-              variants={itemVariants}
-              className="relative bg-white rounded-lg shadow-lg overflow-hidden"
+              className="relative bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
@@ -75,7 +53,7 @@ const OurRooms: React.FC = () => {
               <div className="p-4">
                 <h3 className="text-xl font-bold mb-2">{room.title}</h3>
                 <p className="text-gray-700 mb-2">{room.description}</p>
-                <p className="text-lg font-semibold text-blue-600">
+                <p className="text-lg font-semibold text-cyan-800">
                   {room.price}
                 </p>
               </div>
@@ -83,10 +61,10 @@ const OurRooms: React.FC = () => {
           ))}
         </div>
 
-        <motion.div variants={itemVariants} className="mt-12 text-center">
+        <motion.div className="mt-12 text-center">
           <a
             href="#bookARoom"
-            className="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-500 transition duration-300"
+            className="inline-block bg-cyan-800 border mt-10 border-cyan-800 hover:bg-transparent hover:text-cyan-800 text-white font-bold py-3 px-8 rounded-full  transition duration-300"
           >
             Book Your Room Now
           </a>
