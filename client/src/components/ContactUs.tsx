@@ -5,6 +5,7 @@ import { IconLoader, IconX } from "@tabler/icons-react";
 import { INITIAL_FORM_DATA } from "../utils/interfaces";
 import BottomGradient from "./BottomGradient";
 import LabelInputContainer from "./LabelInputContainer";
+import { FaArrowRight, FaChevronRight } from "react-icons/fa";
 
 const today = new Date().toISOString().split("T")[0];
 
@@ -86,10 +87,10 @@ const ContactUs: React.FC = () => {
 
   return (
     <div id="bookARoom">
-      <div className="bg-black text-white">
+      <div className="bg-cyan-800 text-white">
         <div className="container mx-auto py-12">
           <h1 className="text-4xl font-bold text-center">
-            Feel free to contact us! Call{" "}
+            Feel free to contact us! Call <br />
             <span className="text-blue-300">+(250) 78-3584816</span>
           </h1>
         </div>
@@ -214,13 +215,16 @@ const ContactUs: React.FC = () => {
             ></textarea>
           </LabelInputContainer>
 
-          <button className=" submitButton" type="submit">
+          <button className="submitButton gap-2" type="submit">
             {isSubmitting ? (
               <>
                 <IconLoader className="mr-2" /> Sending...
               </>
             ) : (
-              <span>Send Message &rarr;</span>
+              <>
+                <span>Book Room </span>
+                <FaArrowRight />
+              </>
             )}
             <BottomGradient />
           </button>
