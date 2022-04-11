@@ -1,44 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
+import { Highlight } from "./ui/hero-highlight";
 
 const Map: React.FC = () => {
-  const containerVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-        mass: 1,
-      },
-    },
-  };
-
-  const infoVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-        mass: 1,
-        delay: 0.3,
-      },
-    },
-  };
-
   return (
     <motion.div
-      className="relative min-h-screen bg-gradient-to-b from-blue-100 to-blue-200 py-20 px-4 sm:px-6 lg:px-8"
+      className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8"
       initial="hidden"
       id="findUs"
       animate="visible"
-      variants={containerVariants}
     >
       <div className="max-w-7xl mx-auto">
         <motion.h2
@@ -47,11 +18,11 @@ const Map: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          Find Us Here
+          Find<Highlight className="bg-cyan-800 text-white"> Us Here</Highlight>
         </motion.h2>
 
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-          <motion.div className="w-full lg:w-1/2" variants={infoVariants}>
+          <motion.div className="w-full lg:w-1/2">
             <div className="bg-white rounded-lg shadow-xl p-8">
               <h3 className="text-2xl font-bold text-gray-800 mb-6">
                 Contact Information
