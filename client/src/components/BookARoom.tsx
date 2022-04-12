@@ -5,11 +5,11 @@ import { IconLoader, IconX } from "@tabler/icons-react";
 import { INITIAL_FORM_DATA } from "../utils/interfaces";
 import BottomGradient from "./BottomGradient";
 import LabelInputContainer from "./LabelInputContainer";
-import { FaArrowRight, FaChevronRight } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 
 const today = new Date().toISOString().split("T")[0];
 
-const ContactUs: React.FC = () => {
+const BookARoom: React.FC = () => {
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
   const [statusMessage, setStatusMessage] = useState<string>("");
   const [showMessage, setShowMessage] = useState<boolean>(false);
@@ -222,7 +222,7 @@ const ContactUs: React.FC = () => {
               </>
             ) : (
               <>
-                <span>Book Room </span>
+                <span>Book Room</span>
                 <FaArrowRight />
               </>
             )}
@@ -234,4 +234,4 @@ const ContactUs: React.FC = () => {
   );
 };
 
-export default ContactUs;
+export default BookARoom;

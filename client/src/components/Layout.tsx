@@ -2,7 +2,7 @@ import AboutUs from "./AboutUs";
 import Gallery from "./Gallery/Gallery";
 import Landing from "./Landing";
 import Navbar from "./Navbar";
-import ContactUs from "./ContactUs";
+import ContactUs from "./BookARoom";
 import Footer from "./Footer";
 import Map from "./Map";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
