@@ -16,7 +16,7 @@ export const MenuItem = ({ setActive, item, href, onClick }: MenuItemProps) => {
     <Link
       to={href}
       className={
-        "cursor-pointer text-white hover:text-orange-500 [text-shadow:_-1px_-1px_0_#000,_1px_-1px_0_#000,_-1px_1px_0_#000,_1px_1px_0_#000] dark:[text-shadow:_-1px_-1px_0_#fff,_1px_-1px_0_#fff,_-1px_1px_0_#fff,_1px_1px_0_#fff]"
+        "cursor-pointer text-white hover:text-cyan-600 [text-shadow:_-1px_-1px_0_#000,_1px_-1px_0_#000,_-1px_1px_0_#000,_1px_1px_0_#000] dark:[text-shadow:_-1px_-1px_0_#fff,_1px_-1px_0_#fff,_-1px_1px_0_#fff,_1px_1px_0_#fff]"
       }
       onClick={(e) => {
         if (onClick) {
