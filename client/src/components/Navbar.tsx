@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Menu, MenuItem } from "./ui/navbar-menu";
+import { Menu, MenuItem } from "./ui/menu-item";
 import { cn } from "../lib/utils";
 import { IconDashboard, IconLogin } from "@tabler/icons-react";
 import axios from "axios";
