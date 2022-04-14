@@ -99,7 +99,7 @@ const Navbar = ({ className }: { className?: string }) => {
             setActive={setActive}
             href="/login"
             active={active}
-            item={<IconLogin className="text-orange-500 hover:scale-150" />}
+            item={<IconLogin className="text-black hover:scale-150" />}
             onClick={handleLoginClick}
           />
         )}
