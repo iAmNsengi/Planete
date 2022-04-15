@@ -39,8 +39,9 @@ const Landing: React.FC = () => {
         className="z-50 flex flex-col justify-center items-center"
       >
         <BackgroundLines className="flex items-center justify-center w-screen flex-col px-2">
-          <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-500 to-white dark:from-neutral-500 dark:to-white text-5xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
-            Planete <FlipWords words={words} />
+          <h2 className="bg-clip-text text-transparent text-center text-white text-5xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
+            Planete
+            <FlipWords words={words} />
             <br />
           </h2>
           <p className="max-w-xl px-7 mt-5 lg:mt-1 mx-auto text-sm md:text-lg text-neutral-200 mb-16 dark:text-neutral-400 text-center">

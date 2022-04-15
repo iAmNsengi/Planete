@@ -15,7 +15,6 @@ export const FlipWords = ({
   const [currentWord, setCurrentWord] = useState(words[0]);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
-  // thanks for the fix Julian - https://github.com/Julian-AT
   const startAnimation = useCallback(() => {
     const word = words[words.indexOf(currentWord) + 1] || words[0];
     setCurrentWord(word);
@@ -57,10 +56,9 @@ export const FlipWords = ({
           scale: 2,
           position: "absolute",
         }}
-        className={cn(
-          "z-10 inline-block relative text-left bg-gradient-to-b   bg-clip-text  text-neutral-300  from-neutral-400 to-white px-2",
-          className
-        )}
+        className={
+          "z-10 inline-block relative text-left  bg-cyan-800 text-white py-2 px-2"
+        }
         key={currentWord}
       >
         {currentWord.split(" ").map((word, wordIndex) => (
@@ -74,6 +72,8 @@ export const FlipWords = ({
             }}
             className="inline-block whitespace-nowrap"
           >
+            {" "}
+            <span className="inline-block">&nbsp;</span>
             {word.split("").map((letter, letterIndex) => (
               <motion.span
                 key={word + letterIndex}
@@ -88,7 +88,6 @@ export const FlipWords = ({
                 {letter}
               </motion.span>
             ))}
-            <span className="inline-block">&nbsp;</span>
           </motion.span>
         ))}
       </motion.div>
