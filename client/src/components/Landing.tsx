@@ -23,7 +23,7 @@ const Landing: React.FC = () => {
   const words = ["Hotel", "Restaurant", "Night Club"];
 
   return (
-    <ImagesSlider images={images}>
+    <ImagesSlider  images={images}>
       <motion.div
         initial={{
           opacity: 0,
