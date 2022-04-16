@@ -143,6 +143,7 @@ const Gallery: React.FC = () => {
                             openGallery(currentPage * imagesPerPage + index)
                           }
                           src={image.src}
+                          loading="lazy"
                           className="object-cover select-none w-full h-auto bg-gray-200 rounded-xl cursor-zoom-in aspect-[5/6] lg:aspect-[1/3] xl:aspect-[3/4]"
                           alt={image.alt}
                         />
