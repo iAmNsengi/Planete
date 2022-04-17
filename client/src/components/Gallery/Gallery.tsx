@@ -187,6 +187,7 @@ const Gallery: React.FC = () => {
                       <img
                         className="object-cover w-fit h-fit select-none cursor-zoom-out"
                         src={activeImageUrl || undefined}
+                        loading="lazy"
                         alt=""
                       />
                       <div
