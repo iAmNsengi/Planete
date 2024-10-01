@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { cn } from "../../lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
@@ -119,11 +120,11 @@ export const ImagesSlider = ({
   return (
     <div
       className={cn(
-        "overflow-hidden h-full w-full relative flex items-center justify-center",
+        "overflow-hidden h-screen w-screen relative flex items-center justify-center",
         className
       )}
       style={{
-        perspective: "1000px",
+        perspective: "1100px",
       }}
     >
       {areImagesLoaded && children}
