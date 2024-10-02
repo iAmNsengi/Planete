@@ -1,6 +1,5 @@
 import Card from "./components/Card";
-import Landing from "./components/Landing";
-import Navbar from "./components/Navbar";
+import Layout from "./components/Layout";
 import {
   createBrowserRouter,
   Navigate,
@@ -10,13 +9,7 @@ import {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <div>
-        <Navbar />
-        <Landing />
-        <Card />
-      </div>
-    ),
+    element: <Layout />,
   },
   {
     path: "/admin",
