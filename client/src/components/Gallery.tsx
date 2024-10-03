@@ -70,18 +70,19 @@ const Gallery: React.FC = () => {
   }, [nextImage, prevImage, closeGallery]);
 
   return (
-    <main>
+    <main className="bg-neutral-200">
       <section className="px-4 py-24 mx-auto max-w-7xl ">
         <div className="w-full mx-auto text-left md:w-11/12 xl:w-9/12 md:text-center">
           <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-700 to-white dark:from-neutral-600 dark:to-white text-5xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
-            Gall<Highlight className="text-black dark:text-white">ery</Highlight>
+            Gall
+            <Highlight className="text-black dark:text-white">ery</Highlight>
             <br />
           </h2>
         </div>
       </section>
 
       <section>
-        <div className="w-full h-full min-h-screen select-none">
+        <div className="w-full h-full min-h-screen select-none ">
           <div
             className="max-w-6xl mx-auto duration-1000 delay-300 opacity-0 select-none ease animate-fade-in-view"
             style={{ opacity: 1, transform: "translate(0px, 0px)" }}
