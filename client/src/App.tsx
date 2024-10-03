@@ -1,4 +1,3 @@
-import Card from "./components/Card";
 import Layout from "./components/Layout";
 import {
   createBrowserRouter,
@@ -11,10 +10,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout />,
   },
-  {
-    path: "/admin",
-    element: <Card />,
-  },
+  // {
+  //   path: "/admin",
+  //   element: <Card />,
+  // },
   {
     path: "*",
     element: <Navigate to="/" />,

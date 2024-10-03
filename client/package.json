@@ -21,7 +21,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cobe": "^0.6.3",
-    "framer-motion": "^11.9.0",
+    "framer-motion": "^11.10.0",
     "lucide-react": "^0.446.0",
     "mini-svg-data-uri": "^1.4.4",
     "qss": "^3.0.0",
