@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const AboutUs = () => {
   return (
-    <div className="flex items-center justify-between min-h-screen bg-gray-100 p-8">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 p-8">
       <motion.img
         src="https://planete.onrender.com/img/outside(7).JPG"
         alt="Left decorative image"
@@ -24,14 +24,6 @@ const AboutUs = () => {
           world through our work and commitment to excellence.
         </p>
       </motion.div>
-      <motion.img
-        src="https://planete.onrender.com/img/outside(7).JPG"
-        alt="Right decorative image"
-        className="w-1/4 h-auto object-cover rounded-lg shadow-md"
-        initial={{ x: 100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
-      />
     </div>
   );
 };
