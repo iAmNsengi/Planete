@@ -33,7 +33,7 @@ const Landing = () => {
             Planete <FlipWords words={words} />
             <br />
           </h2>
-          <p className="max-w-xl mx-auto text-sm md:text-lg text-neutral-200 mb-16 dark:text-neutral-400 text-center">
+          <p className="max-w-xl px-7 mt-5 lg:mt-1 mx-auto text-sm md:text-lg text-neutral-200 mb-16 dark:text-neutral-400 text-center">
             At Planete Hotel, we believe in creating an experience that goes
             beyond just a place to stay.
           </p>
