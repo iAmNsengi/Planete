@@ -4,7 +4,7 @@ import { Input } from "./ui/input";
 
 const ContactUs = () => {
   return (
-    <>
+    <div id="contact">
       <div className="bg-black text-white ">
         <div className="container mx-auto py-12">
           <h1 className="text-4xl font-bold text-center">
@@ -52,7 +52,7 @@ const ContactUs = () => {
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

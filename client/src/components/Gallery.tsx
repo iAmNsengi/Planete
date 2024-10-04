@@ -70,7 +70,7 @@ const Gallery: React.FC = () => {
   }, [nextImage, prevImage, closeGallery]);
 
   return (
-    <main className="bg-neutral-200">
+    <main className="bg-neutral-200" id="gallery">
       <section className="px-4 py-24 mx-auto max-w-7xl ">
         <div className="w-full mx-auto text-left md:w-11/12 xl:w-9/12 md:text-center">
           <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-700 to-white dark:from-neutral-600 dark:to-white text-5xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
