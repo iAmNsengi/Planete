@@ -13,7 +13,7 @@ export function Login() {
   };
   return (
     <div className="max-w-md w-full mx-auto rounded-lg absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black border">
-      <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
+      <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200 text-center py-7">
         Login | Planete Hotel Rwanda
       </h2>
 
