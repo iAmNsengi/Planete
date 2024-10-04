@@ -82,18 +82,21 @@ const Gallery: React.FC = () => {
       </section>
 
       <section>
-        <div className="w-full h-full min-h-screen select-none ">
+        <div className="w-full h-full min-h-screen select-none">
           <div
-            className="max-w-6xl mx-auto duration-1000 delay-300 opacity-0 select-none ease animate-fade-in-view"
+            className="max-w-6xl mx-auto duration-1000 delay-300 opacity-0 select-none ease animate-fade-in-view px-2 lg:px-0"
             style={{ opacity: 1, transform: "translate(0px, 0px)" }}
           >
-            <ul id="gallery" className="grid grid-cols-3 gap-5 lg:grid-cols-5">
+            <ul
+              id="gallery"
+              className="grid gap-2 lg:gap-4 grid-cols-2 lg:grid-cols-3"
+            >
               {images.map((image, index) => (
                 <li key={index}>
                   <img
                     onClick={() => openGallery(index)}
                     src={image.src}
-                    className="object-cover select-none w-full h-auto bg-gray-200 rounded cursor-zoom-in aspect-[5/6] lg:aspect-[2/3] xl:aspect-[3/4]"
+                    className="object-cover select-none w-full h-auto bg-gray-200 rounded-xl cursor-zoom-in aspect-[5/6] lg:aspect-[1/3] xl:aspect-[3/4]"
                     alt={image.alt}
                   />
                 </li>
@@ -129,7 +132,7 @@ const Gallery: React.FC = () => {
                   </svg>
                 </div>
                 <img
-                  className="object-contain object-center w-full h-full select-none cursor-zoom-out"
+                  className="object-cover w-full h-full select-none cursor-zoom-out"
                   src={activeImageUrl || undefined}
                   alt=""
                 />
