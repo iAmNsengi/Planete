@@ -20,7 +20,11 @@ export function Login() {
       <form className="my-8" onSubmit={handleSubmit}>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="Username">Username</Label>
-          <Input id="username" placeholder="Username..." type="text" />
+          <Input
+            id="username"
+            placeholder="Username..."
+            type="text"
+          />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>

@@ -12,9 +12,24 @@ const Navbar = ({ className }: { className?: string }) => {
       )}
     >
       <Menu setActive={setActive}>
-        <MenuItem setActive={setActive} active={active} item="Services" />
-        <MenuItem setActive={setActive} active={active} item="Products" />
-        <MenuItem setActive={setActive} active={active} item="Pricing" />
+        <MenuItem
+          setActive={setActive}
+          href="#about"
+          active={active}
+          item="About"
+        />
+        <MenuItem
+          setActive={setActive}
+          href="#gallery"
+          active={active}
+          item="Gallery"
+        />
+        <MenuItem
+          setActive={setActive}
+          href="#contact"
+          active={active}
+          item="Contact"
+        />
       </Menu>
     </div>
   );

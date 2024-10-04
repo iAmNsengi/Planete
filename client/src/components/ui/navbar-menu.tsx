@@ -2,25 +2,26 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-
 export const MenuItem = ({
   setActive,
   item,
+  href,
 }: {
   setActive: (item: string) => void;
   active: string | null;
   item: string;
+  href: string;
   children?: React.ReactNode;
 }) => {
   return (
-    <div onMouseEnter={() => setActive(item)} className="relative ">
+    <a onMouseEnter={() => setActive(item)} className="relative" href={href}>
       <motion.p
         transition={{ duration: 0.3 }}
         className="cursor-pointer text-white hover:opacity-[0.9] hover:text-orange-500 dark:text-white"
       >
         {item}
       </motion.p>
-    </div>
+    </a>
   );
 };
 
@@ -34,7 +35,7 @@ export const Menu = ({
   return (
     <nav
       onMouseLeave={() => setActive(null)} // resets the state
-      className="relative rounded-full border border-transparent dark:bg-black dark:border-white/[0.2] bg-transparent   shadow-input flex justify-center space-x-4 px-8 py-6 "
+      className="relative rounded-full border border-transparent dark:bg-black dark:border-white/[0.2] bg-transparent shadow-input flex justify-center space-x-4 px-8 py-6 "
     >
       {children}
     </nav>
