@@ -96,7 +96,7 @@ const Gallery: React.FC = () => {
                   <img
                     onClick={() => openGallery(index)}
                     src={image.src}
-                    className="object-cover select-none w-full h-auto bg-gray-200 rounded-xl cursor-zoom-in aspect-[5/6] lg:aspect-[2/3] xl:aspect-[3/4]"
+                    className="object-cover select-none w-full h-auto bg-gray-200 rounded-xl cursor-zoom-in aspect-[5/6] lg:aspect-[1/3] xl:aspect-[3/4]"
                     alt={image.alt}
                   />
                 </li>
@@ -132,7 +132,7 @@ const Gallery: React.FC = () => {
                   </svg>
                 </div>
                 <img
-                  className="object-cover object-center w-full h-full select-none cursor-zoom-out"
+                  className="object-cover w-full h-full select-none cursor-zoom-out"
                   src={activeImageUrl || undefined}
                   alt=""
                 />
