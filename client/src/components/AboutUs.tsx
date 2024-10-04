@@ -4,7 +4,7 @@ import { Highlight } from "./ui/hero-highlight";
 
 const AboutUs = () => {
   return (
-    <div className="min-h-screen w-full bg-black bg-grid-white/[0.2] relative flex flex-col lg:flex-row items-center justify-center py-12 px-4 md:px-3 lg:px-32">
+    <div   className="min-h-screen w-full bg-black bg-grid-white/[0.2] relative flex flex-col lg:flex-row items-center justify-center py-12 px-4 md:px-3 lg:px-32">
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 
       <motion.div

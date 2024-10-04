@@ -3,8 +3,9 @@ import { motion } from "framer-motion";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-black text-white py-20 px-4">
-      <div className="max-w-6xl mx-auto">
+    <footer className="w-full bg-black bg-grid-white/[0.2] relative  py-20 px-4">
+      <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+      <div className="max-w-6xl mx-auto text-white">
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
           initial={{ opacity: 0, y: 20 }}
