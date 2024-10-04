@@ -4,16 +4,17 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
+import { Login } from "./pages/Login";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
   },
-  // {
-  //   path: "/admin",
-  //   element: <Card />,
-  // },
+  {
+    path: "/login",
+    element: <Login />,
+  },
   {
     path: "*",
     element: <Navigate to="/" />,
