@@ -12,7 +12,7 @@ const Dashboard: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-gray-100">
+    <div className="flex flex-col md:flex-row min-h-screen bg-gray-900 text-white">
       {/* Sidebar */}
       <motion.aside
         initial={{ x: -300 }}
@@ -54,43 +54,19 @@ const Dashboard: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Project Overview Card */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="bg-white rounded-lg shadow-md p-6"
-          >
-            <h3 className="text-xl font-semibold mb-4">Project Overview</h3>
-            <p className="text-gray-600">Active Projects: 12</p>
-            <p className="text-gray-600">Completed Projects: 24</p>
-          </motion.div>
 
           {/* User Stats Card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-white rounded-lg shadow-md p-6"
+            className="bg-neutral-400 rounded-lg shadow-md p-6"
           >
             <h3 className="text-xl font-semibold mb-4">User Statistics</h3>
             <p className="text-gray-600">Total Users: 1,234</p>
             <p className="text-gray-600">Active Users: 789</p>
           </motion.div>
 
-          {/* Recent Activity Card */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-white rounded-lg shadow-md p-6"
-          >
-            <h3 className="text-xl font-semibold mb-4">Recent Activity</h3>
-            <ul className="text-gray-600">
-              <li className="mb-2">New project created: "Project X"</li>
-              <li className="mb-2">User "John Doe" joined the team</li>
-              <li>3 tasks completed in "Project Y"</li>
-            </ul>
-          </motion.div>
         </div>
       </main>
     </div>
