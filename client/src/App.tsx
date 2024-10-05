@@ -49,7 +49,9 @@ const AuthChecker = ({ children }: { children: React.ReactNode }) => {
   }, [navigate]);
 
   if (isAuthenticated === null) {
-    return <div>Loading...</div>; // Or a loading spinner
+    return (
+      <div className="rounded-md h-12 w-12 border-4 border-t-4 border-blue-500 animate-spin absolute"></div>
+    );
   }
 
   return isAuthenticated ? <>{children}</> : null;
