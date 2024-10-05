@@ -11,10 +11,11 @@ const ContactUs = () => {
     email: "",
     message: "",
   };
-  const [errorMessage, setErrorMessage] = useState<string>("");
-  const [showError, setShowError] = useState<boolean | undefined>(false);
+  const [statusMessage, setStatusMessage] = useState<string>("");
+  const [showMessage, setShowMessage] = useState<boolean | undefined>(false);
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,14 +23,16 @@ const ContactUs = () => {
 
     const { firstname, lastname, email, message } = formData;
     if (firstname === "" || lastname === "" || email === "" || message === "") {
-      setErrorMessage("All fields are required");
-      setShowError(false);
+      setStatusMessage("All fields are required");
+      setShowMessage(true);
+      setSuccess(false);
       setIsSubmitting(false);
-      return;
     } else {
       setIsSubmitting(false);
-      setErrorMessage("");
-      setShowError(false);
+      setStatusMessage("Message sent successfully!");
+      setFormData(INITIAL_FORM_DATA);
+      setSuccess(true);
+      setShowMessage(true);
     }
   };
   return (
@@ -48,14 +51,22 @@ const ContactUs = () => {
         </h2>
 
         <form className="my-8" onSubmit={handleSubmit}>
-          {showError && (
-            <div className="bg-red-50 text-red-500 border border-red-500 p-2 rounded-md my-3 text-center flex justify-between items-center">
+          {showMessage && (
+            <div
+              className={`${
+                success
+                  ? "bg-green-50 border-green-500 text-green-500 "
+                  : "bg-red-50 border-red-500 text-red-500"
+              } border  p-2 rounded-md my-3 text-center flex justify-between items-center`}
+            >
               {" "}
-              <span>{errorMessage} </span>
+              <span>{statusMessage}</span>
               <span>
                 <IconX
-                  className="border border-red-500 cursor-pointer"
-                  onClick={() => setShowError(false)}
+                  className={`border ${
+                    success ? "border-green-500" : "border-red-500"
+                  }   cursor-pointer`}
+                  onClick={() => setShowMessage(false)}
                 />{" "}
               </span>
             </div>
@@ -67,6 +78,7 @@ const ContactUs = () => {
                 id="firstname"
                 placeholder="Eliezer"
                 type="text"
+                value={formData.firstname}
                 onChange={(e) =>
                   setFormData({ ...formData, firstname: e.target.value })
                 }
@@ -78,6 +90,7 @@ const ContactUs = () => {
                 id="lastname"
                 placeholder="Nsengi"
                 type="text"
+                value={formData.lastname}
                 onChange={(e) =>
                   setFormData({ ...formData, lastname: e.target.value })
                 }
@@ -90,6 +103,7 @@ const ContactUs = () => {
               id="email"
               placeholder="iamnsengi@icloud.com"
               type="email"
+              value={formData.email}
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
@@ -100,6 +114,7 @@ const ContactUs = () => {
             <textarea
               id="message"
               placeholder="Message"
+              value={formData.message}
               rows={6}
               className="bg-neutral-100 outline-none px-4 py-2 rounded-md text-black"
               onChange={(e) =>
