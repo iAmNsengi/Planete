@@ -16,6 +16,17 @@ router.get("/", checkAuth, async (req, res) => {
   }
 });
 
+router.get("/getUser", checkAuth, async (req, res) => {
+  const {id}  = req.user;
+  try {
+    const user = await User.findById(id);
+    return res.status(200).json({ user, success: true });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json({ message: error.message, success: false });
+  }
+});
+
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
