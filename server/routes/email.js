@@ -1,5 +1,7 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
+const Message = require("../models/Message");
+const checkAuth = require("../middlewares/checkAuth");
 
 const router = express.Router();
 
@@ -47,6 +49,16 @@ router.post("/message", async (req, res) => {
   } catch (error) {
     console.error(error.message);
     console.log("here");
+    return res.status(500).json({ message: error.message, success: false });
+  }
+});
+
+router.get("/", checkAuth, async (req, res) => {
+  try {
+    const messages = await Message.find();
+    return res.status(200).json({ messages: messages, success: true });
+  } catch (error) {
+    console.error(error.message);
     return res.status(500).json({ message: error.message, success: false });
   }
 });
