@@ -72,9 +72,9 @@ const Navbar = ({ className }: { className?: string }) => {
             href="/dashboard"
             active={active}
             item={
-              <div className="flex items-center text-blue-500 gap-1">
-                <IconDashboard className="text-blue-500" />
-                Dashboard
+              <div className="flex items-center  gap-1">
+                <IconDashboard className="text-blue-600" />
+                <span>Dashboard</span>
               </div>
             }
           />
