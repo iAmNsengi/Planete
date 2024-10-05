@@ -4,6 +4,18 @@ const bcrypt = require("bcryptjs");
 
 const router = express.Router();
 
+router.get("/", async (req, res) => {
+    try {
+        const allUsers = await User.find()
+        return res.status(200).json({users: allUsers, success:true})
+        
+    } catch (error) {
+        console.error(error.message)
+        return res.status(500).json({message: error.message, success: false})
+    }
+})
+
+
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -74,5 +86,6 @@ router.post("/register", async (req, res) => {
     return res.status(500).json({ message: error.message, success: false });
   }
 });
+
 
 module.exports = router;
