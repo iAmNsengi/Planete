@@ -2,7 +2,7 @@ import { cn } from "../lib/utils";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { IconLoader, IconX } from "@tabler/icons-react";
-import { useRef, useState } from "react";
+import {  useState } from "react";
 
 const ContactUs = () => {
   const INITIAL_FORM_DATA = {
