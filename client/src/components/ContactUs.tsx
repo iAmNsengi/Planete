@@ -1,8 +1,24 @@
 import { cn } from "../lib/utils";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
+import { IconX } from "@tabler/icons-react";
+import { useRef, useState } from "react";
 
 const ContactUs = () => {
+  const INITIAL_FORM_DATA = {
+    firstname: "",
+    lastname: "",
+    email: "",
+    message: "",
+  };
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [showError, setShowError] = useState<boolean | undefined>(false);
+  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(formData);
+  };
   return (
     <div id="contact">
       <div className="bg-black text-white ">
@@ -18,20 +34,53 @@ const ContactUs = () => {
           Send us a message
         </h2>
 
-        <form className="my-8">
+        <form className="my-8" onSubmit={handleSubmit}>
+          {showError && (
+            <div className="bg-red-50 text-red-500 border border-red-500 p-2 rounded-md my-3 text-center flex justify-between items-center">
+              {" "}
+              <span>error message</span>
+              <span>
+                <IconX
+                  className="border border-red-500 cursor-pointer"
+                  onClick={() => setShowError(false)}
+                />{" "}
+              </span>
+            </div>
+          )}
           <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
             <LabelInputContainer>
               <Label htmlFor="firstname">First name</Label>
-              <Input id="firstname" placeholder="Tyler" type="text" />
+              <Input
+                id="firstname"
+                placeholder="Eliezer"
+                type="text"
+                onChange={(e) =>
+                  setFormData({ ...formData, firstname: e.target.value })
+                }
+              />
             </LabelInputContainer>
             <LabelInputContainer>
               <Label htmlFor="lastname">Last name</Label>
-              <Input id="lastname" placeholder="Durden" type="text" />
+              <Input
+                id="lastname"
+                placeholder="Nsengi"
+                type="text"
+                onChange={(e) =>
+                  setFormData({ ...formData, lastname: e.target.value })
+                }
+              />
             </LabelInputContainer>
           </div>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="email">Email Address</Label>
-            <Input id="email" placeholder="projectmayhem@fc.com" type="email" />
+            <Input
+              id="email"
+              placeholder="iamnsengi@icloud.com"
+              type="email"
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+            />
           </LabelInputContainer>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="message">Message</Label>
@@ -40,6 +89,9 @@ const ContactUs = () => {
               placeholder="Message"
               rows={6}
               className="bg-neutral-100 outline-none px-4 py-2 rounded-md text-black"
+              onChange={(e) =>
+                setFormData({ ...formData, message: e.target.value })
+              }
             ></textarea>
           </LabelInputContainer>
 
