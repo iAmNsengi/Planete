@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, MenuItem } from "./ui/navbar-menu";
 import { cn } from "../lib/utils";
+import { IconLogin } from "@tabler/icons-react";
 
 const Navbar = ({ className }: { className?: string }) => {
   const [active, setActive] = useState<string | null>(null);
@@ -12,6 +13,7 @@ const Navbar = ({ className }: { className?: string }) => {
       )}
     >
       <Menu setActive={setActive}>
+        <div className="flex items-center gap-3">
         <MenuItem
           setActive={setActive}
           href="#about"
@@ -30,6 +32,14 @@ const Navbar = ({ className }: { className?: string }) => {
           active={active}
           item="Contact"
         />
+
+</div>
+        <MenuItem
+          setActive={setActive}
+          href="/login"
+          active={active}
+          item={<IconLogin />}
+          />
       </Menu>
     </div>
   );
