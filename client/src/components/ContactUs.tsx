@@ -52,7 +52,9 @@ const ContactUs = () => {
         }
       } catch (error) {
         console.error("Error:", error);
-        setStatusMessage(data.message);
+        setStatusMessage(
+          "Couldn't send message, double-check your email and try again!"
+        );
         setSuccess(false);
       } finally {
         setIsSubmitting(false);
