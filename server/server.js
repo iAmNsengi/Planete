@@ -11,12 +11,14 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+app.use("/api/users", require("./routes/auth"));
 
-app.use("/api/users", require('./routes/index'))
-
-mongoose.connect(process.env.MONGODB_URI).then(() => {
-  console.log("Connected to database!");
-  app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-  });
-}).catch(()=> console.log("Error connecting to database!"));
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log("Connected to database!");
+    app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+    });
+  })
+  .catch(() => console.log("Error connecting to database!"));
