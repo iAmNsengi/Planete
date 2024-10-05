@@ -35,7 +35,7 @@ const Navbar = ({ className }: { className?: string }) => {
         </div>
         <MenuItem
           setActive={setActive}
-          href="/login"
+          href="login"
           active={active}
           item={<IconLogin className="text-orange-500 hover:scale-150" />}
         />

@@ -16,7 +16,6 @@ export function Login() {
       <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200 text-center py-7">
         Login | Planete Hotel Rwanda
       </h2>
-
       <form className="my-8" onSubmit={handleSubmit}>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="Username">Username</Label>
