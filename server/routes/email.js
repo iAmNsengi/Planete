@@ -4,7 +4,7 @@ const nodemailer = require("nodemailer");
 const router = express.Router();
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.google.com",
+  host: "smtp.gmail.com",
   port: 465,
   secure: true,
   auth: {
@@ -16,18 +16,19 @@ const transporter = nodemailer.createTransport({
 router.post("/message", async (req, res) => {
   const { firstname, lastname, email, message } = req.body;
   try {
+    console.log(process.env.GMAIL_PASSWORD);
     await transporter.sendMail({
       from: "info.planetehotelrwanda@gmail.com",
       to: email,
       subject: "Message from Planetehotel",
-      text: `Thank you ${firstname} ${lastname} for your message. We will get back to you shortly.`,
+      text: `${message}`,
       html: `
-        <h1>New message from ${firstname} ${lastname}</h1>
+        <h1>Hello dear ${firstname} ${lastname}</h1>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong> ${message}</p>
+        <p><strong>Thank you for contacting us!</strong> <br>We will get back to you soon!</p>
+        <code> <br><br> Planete Hotel Management Team </code>
       `,
     });
-
     await transporter.sendMail({
       from: email,
       to: "info.planetehotelrwanda@gmail.com",
@@ -45,8 +46,9 @@ router.post("/message", async (req, res) => {
     });
   } catch (error) {
     console.error(error.message);
+    console.log("here");
     return res.status(500).json({ message: error.message, success: false });
   }
 });
 
-
+module.exports = router;

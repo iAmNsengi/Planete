@@ -30,7 +30,7 @@ const ContactUs = () => {
     } else {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/message`,
+          `${import.meta.env.VITE_API_URL}/emails/message`,
           {
             method: "POST",
             headers: {
@@ -52,7 +52,7 @@ const ContactUs = () => {
         }
       } catch (error) {
         console.error("Error:", error);
-        setStatusMessage("An error occurred. Please try again later.");
+        setStatusMessage(data.message);
         setSuccess(false);
       } finally {
         setIsSubmitting(false);
