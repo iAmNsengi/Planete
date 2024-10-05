@@ -12,8 +12,10 @@ const Navbar = ({ className }: { className?: string }) => {
 
   const checkAuthentication = useCallback(async () => {
     const token = localStorage.getItem("token");
+    console.log(token);
+
     if (token) {
-      const tokenIsValid = await axios.post(
+      const tokenIsValid = await axios.get(
         `${import.meta.env.VITE_API_URL}/users/getUser`,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -29,7 +31,7 @@ const Navbar = ({ className }: { className?: string }) => {
 
   useEffect(() => {
     checkAuthentication();
-  }, [checkAuthentication]);
+  }, []);
 
   const handleLoginClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -69,8 +71,12 @@ const Navbar = ({ className }: { className?: string }) => {
             setActive={setActive}
             href="/dashboard"
             active={active}
-            item={<IconDashboard className="text-blue-500 hover:scale-150" />}
-            onClick={handleLoginClick}
+            item={
+              <div className="flex items-center text-blue-500 gap-1">
+                <IconDashboard className="text-blue-500" />
+                Dashboard
+              </div>
+            }
           />
         ) : (
           <MenuItem
