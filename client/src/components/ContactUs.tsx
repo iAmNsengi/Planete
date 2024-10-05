@@ -2,7 +2,7 @@ import { cn } from "../lib/utils";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { IconLoader, IconX } from "@tabler/icons-react";
-import {  useState } from "react";
+import { useState } from "react";
 
 const ContactUs = () => {
   const INITIAL_FORM_DATA = {
@@ -28,11 +28,36 @@ const ContactUs = () => {
       setSuccess(false);
       setIsSubmitting(false);
     } else {
-      setIsSubmitting(false);
-      setStatusMessage("Message sent successfully!");
-      setFormData(INITIAL_FORM_DATA);
-      setSuccess(true);
-      setShowMessage(true);
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/message`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          }
+        );
+
+        const data = await response.json();
+
+        if (data.success) {
+          setStatusMessage(data.message);
+          setFormData(INITIAL_FORM_DATA);
+          setSuccess(true);
+        } else {
+          setStatusMessage(data.message);
+          setSuccess(false);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        setStatusMessage("An error occurred. Please try again later.");
+        setSuccess(false);
+      } finally {
+        setIsSubmitting(false);
+        setShowMessage(true);
+      }
     }
   };
   return (
