@@ -42,6 +42,14 @@ router.post("/message", async (req, res) => {
         <p><strong>Message:</strong> ${message}</p>
       `,
     });
+
+    const newMessage = new Message({
+      firstname,
+      lastname,
+      email,
+      message,
+    });
+      await newMessage.save()
     return res.status(200).json({
       message: "Email sent successfully",
       success: true,
