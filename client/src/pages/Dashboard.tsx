@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FiHome, FiUsers, FiFileText, FiSettings } from "react-icons/fi";
+import Navbar from "../components/Navbar";
 
 const Dashboard: React.FC = () => {
   const menuItems = [
@@ -17,9 +18,9 @@ const Dashboard: React.FC = () => {
         initial={{ x: -300 }}
         animate={{ x: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full md:w-64 bg-blue-600 text-white p-6"
+        className="w-full md:w-64 bg-black text-white p-6"
       >
-        <h1 className="text-2xl font-bold mb-8">Project Dashboard</h1>
+        <h1 className="text-2xl font-bold mb-8">Planete Hotel</h1>
         <nav>
           <ul>
             {menuItems.map((item, index) => (
@@ -40,7 +41,8 @@ const Dashboard: React.FC = () => {
       </motion.aside>
 
       {/* Main content */}
-      <main className="flex-grow p-6">
+      <main className="flex-grow p-6 py-24">
+        <Navbar />
         <motion.h2
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}

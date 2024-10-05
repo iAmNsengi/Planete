@@ -49,19 +49,19 @@ const Navbar = ({ className }: { className?: string }) => {
         <div className="flex items-center gap-3">
           <MenuItem
             setActive={setActive}
-            href="#about"
+            href="/#about"
             active={active}
             item="About"
           />
           <MenuItem
             setActive={setActive}
-            href="#gallery"
+            href="/#gallery"
             active={active}
             item="Gallery"
           />
           <MenuItem
             setActive={setActive}
-            href="#contact"
+            href="/#contact"
             active={active}
             item="Contact"
           />
