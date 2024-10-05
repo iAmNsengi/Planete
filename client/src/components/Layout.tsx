@@ -12,7 +12,7 @@ const Layout = () => {
       <AboutUs />
       <Gallery />
       <ContactUs />
-      <Footer/>
+      <Footer />
     </div>
   );
 };

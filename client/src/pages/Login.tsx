@@ -1,21 +1,59 @@
-"use client";
-import React from "react";
+import React, { useState } from "react";
 import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
-import { IconBrandGoogle } from "@tabler/icons-react";
+import { IconBrandGoogle, IconX } from "@tabler/icons-react";
 import { cn } from "../lib/utils";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const INITIAL_FORM_VALUES = { username: "", password: "" };
+  const [formData, setFormData] = useState(INITIAL_FORM_VALUES);
+  const [showMessage, setShowMessage] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const navigate = useNavigate();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted");
-    alert("Form submitted!");
+    const { username, password } = formData;
+    if (username === "" || password === "") {
+      setErrorMessage("Please fill in all fields");
+      setShowMessage(true);
+      return;
+    }
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/users/login`,
+        { username, password }
+      );
+      localStorage.setItem("token", response.data.token);
+      setShowMessage(false);
+      navigate("/dashboard");
+    } catch (error) {
+      setErrorMessage("Invalid username or password");
+      setShowMessage(true);
+      console.error(error as Error);
+    }
   };
   return (
     <div className="max-w-md w-full mx-auto rounded-lg absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black border">
       <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200 text-center py-7">
         Login | Planete Hotel Rwanda
       </h2>
+      {showMessage && (
+        <div
+          className={`bg-red-50 border-red-500 text-red-500
+               border  p-2 rounded-md my-3 text-center flex justify-between items-center`}
+        >
+          {" "}
+          <span>{errorMessage}</span>
+          <span>
+            <IconX
+              className={`border-red-500 cursor-pointer`}
+              onClick={() => setShowMessage(false)}
+            />{" "}
+          </span>
+        </div>
+      )}
       <form className="my-8" onSubmit={handleSubmit}>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="Username">Username</Label>
@@ -23,11 +61,23 @@ export function Login() {
             id="username"
             placeholder="Username..."
             type="text"
+            value={formData.username}
+            onChange={(e) =>
+              setFormData({ ...formData, username: e.target.value })
+            }
           />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
-          <Input id="password" placeholder="••••••••" type="password" />
+          <Input
+            id="password"
+            placeholder="••••••••"
+            type="password"
+            value={formData.password}
+            onChange={(e) =>
+              setFormData({ ...formData, password: e.target.value })
+            }
+          />
         </LabelInputContainer>
 
         <button
