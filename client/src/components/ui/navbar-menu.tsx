@@ -1,33 +1,33 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
-export const MenuItem = ({
-  setActive,
-  item,
-  href,
-}: {
+// Add onClick to the props
+interface MenuItemProps {
   setActive: (item: string) => void;
   active: string | null;
   item: string | React.ReactNode;
   href: string;
-  children?: React.ReactNode;
-}) => {
+  onClick?: (e: React.MouseEvent) => void;
+}
+
+export const MenuItem = ({ setActive, item, href, onClick }: MenuItemProps) => {
   return (
-    <a
-      onMouseEnter={() => setActive(item as string)}
-      className="relative"
-      href={href}
+    <Link
+      to={href}
+      className={
+        "cursor-pointer text-white hover:text-orange-500 [text-shadow:_-1px_-1px_0_#000,_1px_-1px_0_#000,_-1px_1px_0_#000,_1px_1px_0_#000] dark:[text-shadow:_-1px_-1px_0_#fff,_1px_-1px_0_#fff,_-1px_1px_0_#fff,_1px_1px_0_#fff]"
+      }
+      onClick={(e) => {
+        if (onClick) {
+          onClick(e);
+        } else {
+          setActive(item as string);
+        }
+      }}
     >
-      <motion.p
-        transition={{ duration: 0.3 }}
-        className="cursor-pointer text-white hover:text-orange-500 
-        [text-shadow:_-1px_-1px_0_#000,_1px_-1px_0_#000,_-1px_1px_0_#000,_1px_1px_0_#000]
-        dark:[text-shadow:_-1px_-1px_0_#fff,_1px_-1px_0_#fff,_-1px_1px_0_#fff,_1px_1px_0_#fff]"
-      >
-        {item}
-      </motion.p>
-    </a>
+      {item}
+    </Link>
   );
 };
 

@@ -1,13 +1,13 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FiHome, FiUsers, FiFileText, FiSettings } from 'react-icons/fi';
+import React from "react";
+import { motion } from "framer-motion";
+import { FiHome, FiUsers, FiFileText, FiSettings } from "react-icons/fi";
 
 const Dashboard: React.FC = () => {
   const menuItems = [
-    { icon: FiHome, text: 'Home' },
-    { icon: FiUsers, text: 'Users' },
-    { icon: FiFileText, text: 'Projects' },
-    { icon: FiSettings, text: 'Settings' },
+    { icon: FiHome, text: "Home" },
+    { icon: FiUsers, text: "Users" },
+    { icon: FiFileText, text: "Projects" },
+    { icon: FiSettings, text: "Settings" },
   ];
 
   return (

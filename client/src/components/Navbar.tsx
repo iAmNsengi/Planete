@@ -1,10 +1,18 @@
 import { useState } from "react";
+import {  useNavigate } from "react-router-dom";
 import { Menu, MenuItem } from "./ui/navbar-menu";
 import { cn } from "../lib/utils";
 import { IconLogin } from "@tabler/icons-react";
 
 const Navbar = ({ className }: { className?: string }) => {
   const [active, setActive] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  const handleLoginClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate("/login");
+  };
+
   return (
     <div
       className={cn(
@@ -35,9 +43,10 @@ const Navbar = ({ className }: { className?: string }) => {
         </div>
         <MenuItem
           setActive={setActive}
-          href="login"
+          href="/login"
           active={active}
           item={<IconLogin className="text-orange-500 hover:scale-150" />}
+          onClick={handleLoginClick}
         />
       </Menu>
     </div>
