@@ -1,12 +1,35 @@
-import { useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Menu, MenuItem } from "./ui/navbar-menu";
 import { cn } from "../lib/utils";
-import { IconLogin } from "@tabler/icons-react";
+import { IconDashboard, IconLogin } from "@tabler/icons-react";
+import axios from "axios";
 
 const Navbar = ({ className }: { className?: string }) => {
   const [active, setActive] = useState<string | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const navigate = useNavigate();
+
+  const checkAuthentication = useCallback(async () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const tokenIsValid = await axios.post(
+        `${import.meta.env.VITE_API_URL}/users/getUser`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      if (tokenIsValid) {
+        setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    checkAuthentication();
+  }, [checkAuthentication]);
 
   const handleLoginClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -41,13 +64,23 @@ const Navbar = ({ className }: { className?: string }) => {
             item="Contact"
           />
         </div>
-        <MenuItem
-          setActive={setActive}
-          href="/login"
-          active={active}
-          item={<IconLogin className="text-orange-500 hover:scale-150" />}
-          onClick={handleLoginClick}
-        />
+        {isAuthenticated ? (
+          <MenuItem
+            setActive={setActive}
+            href="/dashboard"
+            active={active}
+            item={<IconDashboard className="text-blue-500 hover:scale-150" />}
+            onClick={handleLoginClick}
+          />
+        ) : (
+          <MenuItem
+            setActive={setActive}
+            href="/login"
+            active={active}
+            item={<IconLogin className="text-orange-500 hover:scale-150" />}
+            onClick={handleLoginClick}
+          />
+        )}
       </Menu>
     </div>
   );
