@@ -70,7 +70,7 @@ const Footer: React.FC = () => {
             href="https://nsengixp.onrender.com"
             target="_blank"
           >
-            &Comma LLC
+            zerSquare
           </a>{" "}
           .
         </motion.div>
