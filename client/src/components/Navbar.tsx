@@ -14,32 +14,31 @@ const Navbar = ({ className }: { className?: string }) => {
     >
       <Menu setActive={setActive}>
         <div className="flex items-center gap-3">
-        <MenuItem
-          setActive={setActive}
-          href="#about"
-          active={active}
-          item="About"
-        />
-        <MenuItem
-          setActive={setActive}
-          href="#gallery"
-          active={active}
-          item="Gallery"
-        />
-        <MenuItem
-          setActive={setActive}
-          href="#contact"
-          active={active}
-          item="Contact"
-        />
-
-</div>
+          <MenuItem
+            setActive={setActive}
+            href="#about"
+            active={active}
+            item="About"
+          />
+          <MenuItem
+            setActive={setActive}
+            href="#gallery"
+            active={active}
+            item="Gallery"
+          />
+          <MenuItem
+            setActive={setActive}
+            href="#contact"
+            active={active}
+            item="Contact"
+          />
+        </div>
         <MenuItem
           setActive={setActive}
           href="/login"
           active={active}
-          item={<IconLogin />}
-          />
+          item={<IconLogin className="text-orange-500 hover:scale-150" />}
+        />
       </Menu>
     </div>
   );
