@@ -49,7 +49,7 @@ export function Login() {
           className={`bg-red-50 border-red-500 text-red-500
                border  p-2 rounded-md my-3 text-center flex justify-between items-center`}
         >
-          {" "}
+
           <span>{errorMessage}</span>
           <span>
             <IconX
