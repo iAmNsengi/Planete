@@ -10,7 +10,7 @@ const checkAuth = async (req, res, next) => {
     });
   const token = authHeader.split(" ")[1];
   try {
-    const verifyToken = await jwt.verify(token, process.env.JWT_SECRET_KEY);
+    const verifyToken = await jwt.verify(token, process.env.JWT_SECRET);
     req.user = { id: verifyToken.id };
     next();
   } catch (error) {

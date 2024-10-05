@@ -2,11 +2,11 @@ const express = require("express");
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
+const checkAuth = require("../middlewares/checkAuth");
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/", checkAuth, async (req, res) => {
   try {
     const allUsers = await User.find();
     return res.status(200).json({ users: allUsers, success: true });
@@ -62,13 +62,13 @@ router.post("/register", async (req, res) => {
       });
 
     const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(password, salt);
-      
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     // create a new user
     const user = new User({ username, password: hashedPassword });
     const payload = {
       user: { id: user.id },
-      };
+    };
 
     await jwt.sign(
       payload,
