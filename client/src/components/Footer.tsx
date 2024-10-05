@@ -67,7 +67,7 @@ const Footer: React.FC = () => {
           © 2024 Planete Hotel. All rights reserved. Designed by{" "}
           <a
             className="text-blue-400"
-            href="https:nsengixp.onrender.com"
+            href="/https:nsengixp.onrender.com"
             target="_blank"
           >
             &Comma LLC
