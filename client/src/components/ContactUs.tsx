@@ -1,7 +1,7 @@
 import { cn } from "../lib/utils";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
-import { IconX } from "@tabler/icons-react";
+import { IconLoader, IconX } from "@tabler/icons-react";
 import { useRef, useState } from "react";
 
 const ContactUs = () => {
@@ -14,10 +14,23 @@ const ContactUs = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [showError, setShowError] = useState<boolean | undefined>(false);
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
+    setIsSubmitting(true);
+
+    const { firstname, lastname, email, message } = formData;
+    if (firstname === "" || lastname === "" || email === "" || message === "") {
+      setErrorMessage("All fields are required");
+      setShowError(false);
+      setIsSubmitting(false);
+      return;
+    } else {
+      setIsSubmitting(false);
+      setErrorMessage("");
+      setShowError(false);
+    }
   };
   return (
     <div id="contact">
@@ -38,7 +51,7 @@ const ContactUs = () => {
           {showError && (
             <div className="bg-red-50 text-red-500 border border-red-500 p-2 rounded-md my-3 text-center flex justify-between items-center">
               {" "}
-              <span>error message</span>
+              <span>{errorMessage} </span>
               <span>
                 <IconX
                   className="border border-red-500 cursor-pointer"
@@ -96,10 +109,17 @@ const ContactUs = () => {
           </LabelInputContainer>
 
           <button
-            className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+            className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] items-center flex justify-center"
             type="submit"
           >
-            Send Message &rarr;
+            {isSubmitting ? (
+              <>
+                {" "}
+                <IconLoader /> Sending...
+              </>
+            ) : (
+              <span>Send Message &rarr;</span>
+            )}
             <BottomGradient />
           </button>
         </form>
