@@ -1,15 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FiHome, FiUsers, FiFileText, FiSettings } from "react-icons/fi";
 import Navbar from "../components/Navbar";
 
 const Dashboard: React.FC = () => {
+  interface MessageType {
+    firstname: string;
+    lastname: string;
+    email: string;
+    message: string;
+    createdAt: string;
+  }
   const menuItems = [
     { icon: FiHome, text: "Home" },
     { icon: FiUsers, text: "Users" },
     { icon: FiFileText, text: "Projects" },
     { icon: FiSettings, text: "Settings" },
   ];
+
+  const [messages, setMessages] = useState<MessageType[]>([]);
+
+  useEffect(() => {
+    const fetchMessages = async () => {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/emails`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+      const data = await response.json();
+      setMessages(data);
+    };
+    fetchMessages();
+  }, []);
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-900 text-white">
@@ -51,23 +71,25 @@ const Dashboard: React.FC = () => {
         >
           Welcome to Your Dashboard
         </motion.h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Project Overview Card */}
-
-          {/* User Stats Card */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-neutral-400 rounded-lg shadow-md p-6"
-          >
-            <h3 className="text-xl font-semibold mb-4">User Statistics</h3>
-            <p className="text-gray-600">Total Users: 1,234</p>
-            <p className="text-gray-600">Active Users: 789</p>
-          </motion.div>
-
-        </div>
+        <hr />
+        <table className="w-full">
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Time</th>
+          </tr>
+          {messages.map((message: MessageType) => (
+            <tr>
+              <td>{message.firstname}</td>
+              <td>{message.lastname}</td>
+              <td>{message.email}</td>
+              <td>{message.message}</td>
+              <td>{message.createdAt}</td>
+            </tr>
+          ))}
+        </table>
       </main>
     </div>
   );
