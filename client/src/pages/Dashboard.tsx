@@ -116,6 +116,9 @@ const Dashboard: React.FC = () => {
             </tbody>
           </table>
         </div>
+        {messages.length === 0 && (
+          <p className="text-center text-gray-400 mt-4">No messages found.</p>
+        )}
       </main>
     </div>
   );
