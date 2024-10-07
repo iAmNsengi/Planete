@@ -18,32 +18,31 @@ const transporter = nodemailer.createTransport({
 router.post("/message", async (req, res) => {
   const { firstname, lastname, email, message } = req.body;
   try {
-
-    
-   await Promise.all([transporter.sendMail({
-      from: "info.planetehotelrwanda@gmail.com",
-      to: email,
-      subject: "Message from Planetehotel",
-      text: `${message}`,
-      html: `
+    await Promise.all([
+      transporter.sendMail({
+        from: "info.planetehotelrwanda@gmail.com",
+        to: email,
+        subject: "Message from Planetehotel",
+        text: `${message}`,
+        html: `
         <h1>Hello dear ${firstname} ${lastname}</h1>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Thank you for contacting us!</strong> <br>We will get back to you soon!</p>
         <code> <br><br> Planete Hotel Management Team </code>
       `,
-    }),
-    transporter.sendMail({
-      from: email,
-      to: "info.planetehotelrwanda@gmail.com",
-      subject: `Message from ${firstname} ${lastname}`,
-      text: `${message}`,
-      html: `
+      }),
+      transporter.sendMail({
+        from: email,
+        to: "info.planetehotelrwanda@gmail.com",
+        subject: `Message from ${firstname} ${lastname}`,
+        text: `${message}`,
+        html: `
         <h1>New message from ${firstname} ${lastname}</h1>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Message:</strong> ${message}</p>
       `,
-    })
-  ])
+      }),
+    ]);
 
     const newMessage = new Message({
       firstname,
@@ -51,16 +50,8 @@ router.post("/message", async (req, res) => {
       email,
       message,
     });
-      await newMessage.save()
-    return res.status(2
-      transporter.sendMail({
-        from: email,
-        to: "info.planetehotelrwanda@gmail.com",
-        subject: `Message from ${firstname} ${lastname}`,
-        text: `${message}`,
-        html: `
-          <h1>New message from ${firstname} ${lastname}</h1>
-    await Promise.all([).json({
+    await newMessage.save();
+    return res.status(200).json({
       message: "Email sent successfully",
       success: true,
     });
