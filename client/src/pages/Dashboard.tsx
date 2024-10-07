@@ -13,6 +13,7 @@ interface MessageType {
 
 const Dashboard: React.FC = () => {
   const [messages, setMessages] = useState<MessageType[]>([]);
+  const [randomMessage, setRandomMessage] = useState<MessageType | null>(null);
   const [activeSection, setActiveSection] = useState("dashboard");
   const [about, setAbout] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -21,6 +22,13 @@ const Dashboard: React.FC = () => {
     fetchMessages();
     fetchAbout();
   }, []);
+
+  useEffect(() => {
+    if (messages.length > 0) {
+      const randomIndex = Math.floor(Math.random() * messages.length);
+      setRandomMessage(messages[randomIndex]);
+    }
+  }, [messages]);
 
   const fetchMessages = async () => {
     try {
@@ -51,23 +59,51 @@ const Dashboard: React.FC = () => {
   const handleUpdateAbout = async () => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/about`, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({ about }),
       });
       if (response.ok) {
-        alert('About section updated successfully!');
+        alert("About section updated successfully!");
       } else {
-        throw new Error('Failed to update about section');
+        throw new Error("Failed to update about section");
       }
     } catch (error) {
       console.error("Error updating about:", error);
-      alert('Failed to update about section. Please try again.');
+      alert("Failed to update about section. Please try again.");
     }
   };
+
+  const renderDashboard = () => (
+    <div className="bg-gray-800 rounded-lg shadow-lg p-6 mt-8">
+      <h3 className="text-xl font-semibold mb-4">Random Message</h3>
+      {isLoading ? (
+        <p className="text-center text-gray-400">Loading message...</p>
+      ) : randomMessage ? (
+        <div className="bg-gray-700 rounded-lg p-4">
+          <p className="mb-2">
+            <strong>From:</strong> {randomMessage.firstname}{" "}
+            {randomMessage.lastname}
+          </p>
+          <p className="mb-2">
+            <strong>Email:</strong> {randomMessage.email}
+          </p>
+          <p className="mb-2">
+            <strong>Message:</strong> {randomMessage.message}
+          </p>
+          <p>
+            <strong>Sent at:</strong>{" "}
+            {new Date(randomMessage.createdAt).toLocaleString()}
+          </p>
+        </div>
+      ) : (
+        <p className="text-center text-gray-400">No messages found.</p>
+      )}
+    </div>
+  );
 
   const renderMessages = () => (
     <div className="bg-gray-800 rounded-lg shadow-lg p-6 mt-8">
@@ -81,21 +117,36 @@ const Dashboard: React.FC = () => {
           <table className="w-full text-sm text-left text-gray-300">
             <thead className="text-xs uppercase bg-gray-700 text-gray-400">
               <tr>
-                <th scope="col" className="px-6 py-3">No</th>
-                <th scope="col" className="px-6 py-3">Name</th>
-                <th scope="col" className="px-6 py-3">Email</th>
-                <th scope="col" className="px-6 py-3">Message</th>
-                <th scope="col" className="px-6 py-3">Time</th>
+                <th scope="col" className="px-6 py-3">
+                  No
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Email
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Message
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Time
+                </th>
               </tr>
             </thead>
             <tbody>
               {messages.map((message, index) => (
-                <tr key={message.createdAt} className="border-b border-gray-700 hover:bg-gray-700">
+                <tr
+                  key={message.createdAt}
+                  className="border-b border-gray-700 hover:bg-gray-700"
+                >
                   <td className="px-6 py-4 font-medium">#{index + 1}</td>
                   <td className="px-6 py-4">{`${message.firstname} ${message.lastname}`}</td>
                   <td className="px-6 py-4">{message.email}</td>
                   <td className="px-6 py-4">{message.message}</td>
-                  <td className="px-6 py-4">{new Date(message.createdAt).toLocaleString()}</td>
+                  <td className="px-6 py-4">
+                    {new Date(message.createdAt).toLocaleString()}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -127,6 +178,7 @@ const Dashboard: React.FC = () => {
   const renderContent = () => {
     switch (activeSection) {
       case "dashboard":
+        return renderDashboard();
       case "messages":
         return renderMessages();
       case "about":
@@ -183,7 +235,11 @@ const Dashboard: React.FC = () => {
           transition={{ duration: 0.5 }}
           className="text-3xl font-bold mb-6 mt-8"
         >
-          {activeSection === "about" ? "About Section" : "Welcome to Your Dashboard"}
+          {activeSection === "about"
+            ? "About Section"
+            : activeSection === "messages"
+            ? "All Messages"
+            : "Welcome to Your Dashboard"}
         </motion.h2>
         {renderContent()}
       </main>
