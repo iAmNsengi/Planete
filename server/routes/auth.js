@@ -17,7 +17,7 @@ router.get("/", checkAuth, async (req, res) => {
 });
 
 router.get("/getUser", checkAuth, async (req, res) => {
-  const {id}  = req.user;
+  const { id } = req.user;
   try {
     const user = await User.findById(id);
     return res.status(200).json({ user, success: true });
@@ -55,7 +55,7 @@ router.post("/login", async (req, res) => {
       }
     );
   } catch (error) {
-    console.error(err.message);
+    console.error(err);
     res.status(500).json({ message: "Server Error", success: false });
   }
 });

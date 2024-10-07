@@ -26,7 +26,9 @@ const Dashboard: React.FC = () => {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       const data = await response.json();
-      setMessages(data);
+      console.log(data);
+
+      setMessages(data.messages);
     };
     fetchMessages();
   }, []);
@@ -80,15 +82,16 @@ const Dashboard: React.FC = () => {
             <th>Message</th>
             <th>Time</th>
           </tr>
-          {messages.map((message: MessageType) => (
-            <tr>
-              <td>{message.firstname}</td>
-              <td>{message.lastname}</td>
-              <td>{message.email}</td>
-              <td>{message.message}</td>
-              <td>{message.createdAt}</td>
-            </tr>
-          ))}
+          {messages.length &&
+            messages.map((message: MessageType) => (
+              <tr>
+                <td>{message.firstname}</td>
+                <td>{message.lastname}</td>
+                <td>{message.email}</td>
+                <td>{message.message}</td>
+                <td>{message.createdAt}</td>
+              </tr>
+            ))}
         </table>
       </main>
     </div>
