@@ -79,7 +79,7 @@ const Dashboard: React.FC = () => {
 
   const renderDashboard = () => (
     <div className="bg-gray-800 rounded-lg shadow-lg p-6 mt-8">
-      <h3 className="text-xl font-semibold mb-4">Random Message</h3>
+      <h3 className="text-xl font-semibold mb-4">Random Message From Your Site:</h3>
       {isLoading ? (
         <p className="text-center text-gray-400">Loading message...</p>
       ) : randomMessage ? (
