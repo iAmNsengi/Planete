@@ -227,7 +227,7 @@ const Dashboard: React.FC = () => {
         </nav>
       </motion.aside>
 
-      <main className="flex-grow p-6">
+      <main className="flex-grow p-6 py-20">
         <Navbar />
         <motion.h2
           initial={{ opacity: 0, y: -50 }}
