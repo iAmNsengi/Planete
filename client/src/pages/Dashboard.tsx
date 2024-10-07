@@ -69,22 +69,28 @@ const Dashboard: React.FC = () => {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-3xl font-bold mb-6"
+          className="text-3xl font-bold mb-6 py-12"
         >
           Welcome to Your Dashboard
         </motion.h2>
         <hr />
-        <table className="w-full">
+        <table className="min-w-full text-left text-base font-light text-surface dark:text-white">
           <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Message</th>
-            <th>Time</th>
+            <th scope="col">No</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Message</th>
+            <th scope="col">Time</th>
           </tr>
+
           {messages.length &&
-            messages.map((message: MessageType) => (
-              <tr>
+            messages.map((message: MessageType, index: number) => (
+              <tr
+                key={message.createdAt}
+                className="border-b border-neutral-200 py-5"
+              >
+                <td className="font-bold">#{index + 1}</td>
                 <td>{message.firstname}</td>
                 <td>{message.lastname}</td>
                 <td>{message.email}</td>
