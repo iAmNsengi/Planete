@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Menu, MenuItem } from "./ui/navbar-menu";
 import { cn } from "../lib/utils";
 import { IconDashboard, IconLogin } from "@tabler/icons-react";
@@ -28,10 +28,20 @@ const Navbar = ({ className }: { className?: string }) => {
       }
     }
   }, []);
+  const location = useLocation()
 
   useEffect(() => {
     checkAuthentication();
-  }, []);
+
+    // Check if there's a hash in the URL and scroll to the corresponding section
+    if (location.hash) {
+      const id = location.hash.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
 
   const handleLoginClick = (e: React.MouseEvent) => {
     e.preventDefault();
