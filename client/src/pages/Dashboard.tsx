@@ -73,32 +73,49 @@ const Dashboard: React.FC = () => {
         >
           Welcome to Your Dashboard
         </motion.h2>
-        <hr />
-        <table className="min-w-full text-left text-base font-light text-surface dark:text-white">
-          <tr>
-            <th scope="col">No</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Message</th>
-            <th scope="col">Time</th>
-          </tr>
-
-          {messages.length &&
-            messages.map((message: MessageType, index: number) => (
-              <tr
-                key={message.createdAt}
-                className="border-b border-neutral-200 py-5"
-              >
-                <td className="font-bold">#{index + 1}</td>
-                <td>{message.firstname}</td>
-                <td>{message.lastname}</td>
-                <td>{message.email}</td>
-                <td>{message.message}</td>
-                <td>{message.createdAt}</td>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left text-gray-300">
+            <thead className="text-xs uppercase bg-gray-700 text-gray-400">
+              <tr>
+                <th scope="col" className="px-6 py-3">
+                  No
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  First Name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Last Name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Email
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Message
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Time
+                </th>
               </tr>
-            ))}
-        </table>
+            </thead>
+            <tbody>
+              {messages.map((message: MessageType, index: number) => (
+                <tr
+                  key={message.createdAt}
+                  className="border-b border-gray-700 hover:bg-gray-700"
+                >
+                  <td className="px-6 py-4 font-medium">#{index + 1}</td>
+                  <td className="px-6 py-4">{message.firstname}</td>
+                  <td className="px-6 py-4">{message.lastname}</td>
+                  <td className="px-6 py-4">{message.email}</td>
+                  <td className="px-6 py-4">{message.message}</td>
+                  <td className="px-6 py-4">
+                    {new Date(message.createdAt).toLocaleString()}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </main>
     </div>
   );
