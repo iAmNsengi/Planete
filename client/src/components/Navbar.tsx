@@ -71,9 +71,15 @@ const Navbar = ({ className }: { className?: string }) => {
           />
           <MenuItem
             setActive={setActive}
-            href="/#contact"
+            href="/#findUs"
             active={active}
             item="Contact"
+          />
+          <MenuItem
+            setActive={setActive}
+            href="/#contact"
+            active={active}
+            item="Book a Room"
           />
         </div>
         {isAuthenticated ? (

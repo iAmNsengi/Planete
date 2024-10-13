@@ -38,6 +38,7 @@ const Map: React.FC = () => {
     <motion.div
       className="relative min-h-screen bg-gradient-to-b from-blue-100 to-blue-200 py-20 px-4 sm:px-6 lg:px-8"
       initial="hidden"
+      id="findUs"
       animate="visible"
       variants={containerVariants}
     >
