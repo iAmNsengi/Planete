@@ -103,7 +103,7 @@ const ContactUs = () => {
               <Label htmlFor="firstname">First name</Label>
               <Input
                 id="firstname"
-                placeholder="Eliezer"
+                placeholder="John"
                 type="text"
                 value={formData.firstname}
                 onChange={(e) =>
@@ -115,7 +115,7 @@ const ContactUs = () => {
               <Label htmlFor="lastname">Last name</Label>
               <Input
                 id="lastname"
-                placeholder="Nsengi"
+                placeholder="Doe"
                 type="text"
                 value={formData.lastname}
                 onChange={(e) =>
@@ -128,7 +128,7 @@ const ContactUs = () => {
             <Label htmlFor="email">Email Address</Label>
             <Input
               id="email"
-              placeholder="iamnsengi@icloud.com"
+              placeholder="johndoe@mail.com"
               type="email"
               value={formData.email}
               onChange={(e) =>
