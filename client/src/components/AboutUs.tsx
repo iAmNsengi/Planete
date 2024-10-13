@@ -39,16 +39,18 @@ const AboutUs = () => {
           no one ,a short drive to lake kivu and 2 minutes away from the road
           Rubavu-Karongi.
         </p>
-        <p>Birds</p>
-        <p>
+        <p className="text-base font-extrabold sm:text-lg text-neutral-400 leading-relaxed mt-4">
+          Birds
+        </p>
+        <p className="text-base sm:text-lg text-neutral-400 leading-relaxed mt-4">
           With a terrecace offering unique bird`s singing, international
           favorites and fusion dishes with African flavors
         </p>
-        <p>
+        <p className="text-base sm:text-lg text-neutral-400 leading-relaxed mt-4">
           Seeing birds like blue-breasted tit-strange weaver and white-browed
           coucal and several other
         </p>
-        <p>
+        <p className="text-base font-bold sm:text-lg text-neutral-400 leading-relaxed mt-4">
           Planete is a hotel of 18 rooms in total ,15 guest rooms and 3 for tour
           operators or drivers
         </p>
