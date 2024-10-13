@@ -77,7 +77,7 @@ const Navbar = ({ className }: { className?: string }) => {
           />
           <MenuItem
             setActive={setActive}
-            href="/#contact"
+            href="/#bookARoom"
             active={active}
             item="Book a Room"
           />
