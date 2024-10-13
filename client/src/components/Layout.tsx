@@ -2,8 +2,9 @@ import AboutUs from "./AboutUs";
 import Gallery from "./Gallery";
 import Landing from "./Landing";
 import Navbar from "./Navbar";
-import ContactUs from "./ContactUs";
+// import ContactUs from "./ContactUs";
 import Footer from "./Footer";
+import Map from "./Map";
 const Layout = () => {
   return (
     <div>
@@ -11,7 +12,8 @@ const Layout = () => {
       <Landing />
       <AboutUs />
       <Gallery />
-      <ContactUs />
+      <Map />
+      {/* <ContactUs /> */}
       <Footer />
     </div>
   );
