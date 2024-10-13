@@ -36,26 +36,25 @@ const OurRooms: React.FC = () => {
           variants={itemVariants}
           className="text-center text-4xl sm:text-5xl lg:text-6xl font-bold mb-12"
         >
-          Our
-          <span className="text-blue-600"> Rooms</span>
+          Our Rooms
         </motion.h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {[
             {
-              imgSrc: "https://example.com/room1.jpg",
+              imgSrc: "https://planete.onrender.com/img/room%20(5).JPG",
               title: "Deluxe Room",
               description: "Enjoy luxury and comfort in our deluxe rooms.",
               price: "$150/night",
             },
             {
-              imgSrc: "https://example.com/room2.jpg",
+              imgSrc: "https://planete.onrender.com/img/room%20(5).JPG",
               title: "Standard Room",
               description: "A cozy stay with all essential amenities.",
               price: "$100/night",
             },
             {
-              imgSrc: "https://example.com/room3.jpg",
+              imgSrc: "https://planete.onrender.com/img/room%20(5).JPG",
               title: "Suite",
               description: "Experience elegance in our spacious suites.",
               price: "$250/night",
