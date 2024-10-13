@@ -5,3 +5,11 @@
 5. Opacity background images
 6. booking popup (CRUD)
 7. gallery pictures
+
+room info:
+
+1. Type of room
+2. Price
+3. Time to be spent (check in - check out)
+4. Number of people
+5. Special request (optional)

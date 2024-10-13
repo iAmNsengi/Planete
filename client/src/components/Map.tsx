@@ -1,6 +1,6 @@
 const Map = () => {
   return (
-    <div className="h-full mx-auto py-20">
+    <div className="h-full mx-1/2 py-20 ">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d310.9191818294759!2d29.30858253802569!3d-1.6942915926406843!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2srw!4v1728817321543!5m2!1sen!2srw"
         width="600"

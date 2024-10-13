@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
             <h3 className="text-blue-400 font-bold mb-2">CONTACT INFO</h3>
             <p>Phone: +(250) 78-8426737</p>
             <p>Phone: +(250) 78-3584816</p>
-            <p>Email: maplanetohotel@gmail.com</p>
+            <p>Email: maplanetehotel@gmail.com</p>
           </div>
         </motion.div>
 
