@@ -75,12 +75,7 @@ const Map: React.FC = () => {
             </div>
           </motion.div>
 
-          <motion.div
-            className="w-full lg:w-1/2 relative"
-            whileHover={{ scale: 1.05 }}
-            onHoverStart={() => setIsHovered(true)}
-            onHoverEnd={() => setIsHovered(false)}
-          >
+          <motion.div className="w-full lg:w-1/2 relative">
             <div className="h-[500px] rounded-lg overflow-hidden shadow-2xl">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d310.9191818294759!2d29.30858253802569!3d-1.6942915926406843!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2srw!4v1728817321543!5m2!1sen!2srw"
@@ -92,22 +87,6 @@ const Map: React.FC = () => {
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
-            <motion.div
-              className="absolute inset-0 bg-blue-500 opacity-0 transition-opacity duration-300"
-              animate={{ opacity: isHovered ? 0.2 : 0 }}
-            />
-            {isHovered && (
-              <motion.div
-                className="absolute inset-0 flex items-center justify-center"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              >
-                <span className="text-white text-lg font-semibold bg-blue-600 px-4 py-2 rounded-full shadow-lg">
-                  View Larger Map
-                </span>
-              </motion.div>
-            )}
           </motion.div>
         </div>
       </div>
