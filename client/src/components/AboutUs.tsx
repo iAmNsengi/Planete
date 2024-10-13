@@ -26,10 +26,8 @@ const AboutUs: React.FC = () => {
   return (
     <div
       id="about"
-      className="min-h-screen w-full bg-black bg-grid-white/[0.2] relative py-20 px-4 md:px-6 lg:px-8"
+      className="relative min-h-screen bg-gradient-to-b from-blue-100 to-blue-200 py-20 px-4 sm:px-6 lg:px-8 lg:py-40"
     >
-      <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-
       <motion.div
         className="max-w-7xl mx-auto"
         variants={containerVariants}
@@ -46,13 +44,13 @@ const AboutUs: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div variants={itemVariants} className="space-y-6">
-            <p className="text-lg text-neutral-300 leading-relaxed">
+            <p className="text-lg text-black leading-relaxed">
               At Planete Hotel, we believe in creating an experience that goes
               beyond just a place to stay. Nestled in the heart of the city, our
               hotel offers a perfect blend of luxury, comfort, and impeccable
               service.
             </p>
-            <p className="text-lg text-neutral-300 leading-relaxed">
+            <p className="text-lg text-black leading-relaxed">
               Beautiful terrace with an infinity unparalleled views of thousand
               hills, Planete is where everyone wants to be. The location is
               second to none, a short drive to Lake Kivu and 2 minutes away from
