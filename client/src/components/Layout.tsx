@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import ContactUs from "./ContactUs";
 import Footer from "./Footer";
 import Map from "./Map";
+import { FloatingWhatsApp } from "react-floating-whatsapp";
 const Layout = () => {
   return (
     <div>
@@ -14,6 +15,13 @@ const Layout = () => {
       <Gallery />
       <Map />
       <ContactUs />
+      <FloatingWhatsApp
+        accountName="Planete Hotel"
+        phoneNumber="250788426737"
+        statusMessage="Online"
+        chatMessage="Welcome to Planete Hotel! How can we help you?"
+        avatar="/logo_bg.jpeg"
+      />
       <Footer />
     </div>
   );
