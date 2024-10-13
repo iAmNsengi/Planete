@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
 
 const Map: React.FC = () => {
-  const [isHovered, setIsHovered] = useState(false);
-
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
