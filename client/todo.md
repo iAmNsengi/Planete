@@ -2,7 +2,7 @@
 2. Add rooms and their pricing
 3. Social media icons on footer
 4. Change background image OPACITY
-5. Opacity background images
+5. Opacity background images DONE
 6. booking popup (CRUD) REMOVED
 7. gallery pictures
 
