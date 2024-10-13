@@ -85,7 +85,7 @@ const OurRooms: React.FC = () => {
 
         <motion.div variants={itemVariants} className="mt-12 text-center">
           <a
-            href="#contact"
+            href="#bookARoom"
             className="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-500 transition duration-300"
           >
             Book Your Room Now
