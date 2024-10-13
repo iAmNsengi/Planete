@@ -1,64 +1,121 @@
+import React from "react";
 import { motion } from "framer-motion";
-import Card from "./Card";
 import { Highlight } from "./ui/hero-highlight";
+import { FaBinoculars, FaHotel, FaUtensils } from "react-icons/fa";
 
-const AboutUs = () => {
+const AboutUs: React.FC = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
+
   return (
     <div
-      id={"about"}
-      className="min-h-screen w-full bg-black bg-grid-white/[0.2] relative flex flex-col lg:flex-row items-center justify-center py-12 px-4 md:px-3 lg:px-32"
+      id="about"
+      className="min-h-screen w-full bg-black bg-grid-white/[0.2] relative py-20 px-4 md:px-6 lg:px-8"
     >
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 
       <motion.div
-        className="w-full md:w-3/4 lg:w-2/5 text-center md:text-left mb-8 md:mb-0"
-        initial={{ y: 50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1, delay: 0.5 }}
+        className="max-w-7xl mx-auto"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
       >
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: [20, -5, 0] }}
-          transition={{ duration: 0.5, ease: [0.4, 0.0, 0.2, 1] }}
-          className="bg-clip-text text-transparent bg-gradient-to-b from-neutral-700 to-white dark:from-neutral-600 dark:to-white text-4xl sm:text-5xl lg:text-6xl font-sans py-4 md:py-6 relative z-20 font-bold tracking-tight"
+          variants={itemVariants}
+          className="text-center text-4xl sm:text-5xl lg:text-6xl font-bold mb-12"
         >
           About
-          <Highlight className="text-black dark:text-white"> Us</Highlight>
+          <Highlight className="text-white"> Us</Highlight>
         </motion.h1>
-        <p className="text-base sm:text-lg text-neutral-400 leading-relaxed mt-4">
-          At Planete Hotel, we believe in creating an experience that goes
-          beyond just a place to stay. Nestled in the heart of the city, our
-          hotel offers a perfect blend of luxury, comfort, and impeccable
-          service. Whether you're visiting for business or leisure, our elegant
-          rooms, world-class amenities, and warm hospitality promise to make
-          your stay truly unforgettable.
-        </p>
-        <p className="text-base sm:text-lg text-neutral-400 leading-relaxed mt-4">
-          Beautiful terrace with an infinity unparalleled views of thousand
-          hills ,Planete is where everyone wants to be the location is second to
-          no one ,a short drive to lake kivu and 2 minutes away from the road
-          Rubavu-Karongi.
-        </p>
-        <p className="text-base font-extrabold sm:text-lg text-neutral-400 leading-relaxed mt-4">
-          Birds
-        </p>
-        <p className="text-base sm:text-lg text-neutral-400 leading-relaxed mt-4">
-          With a terrecace offering unique bird`s singing, international
-          favorites and fusion dishes with African flavors
-        </p>
-        <p className="text-base sm:text-lg text-neutral-400 leading-relaxed mt-4">
-          Seeing birds like blue-breasted tit-strange weaver and white-browed
-          coucal and several other
-        </p>
-        <p className="text-base font-bold sm:text-lg text-neutral-400 leading-relaxed mt-4">
-          Planete is a hotel of 18 rooms in total ,15 guest rooms and 3 for tour
-          operators or drivers
-        </p>
-      </motion.div>
 
-      <div className="w-full md:w-1/2 lg:w-3/5 flex justify-center items-center">
-        <Card image="https://planete.onrender.com/img/outside(7).JPG" />
-      </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <motion.div variants={itemVariants} className="space-y-6">
+            <p className="text-lg text-neutral-300 leading-relaxed">
+              At Planete Hotel, we believe in creating an experience that goes
+              beyond just a place to stay. Nestled in the heart of the city, our
+              hotel offers a perfect blend of luxury, comfort, and impeccable
+              service.
+            </p>
+            <p className="text-lg text-neutral-300 leading-relaxed">
+              Beautiful terrace with an infinity unparalleled views of thousand
+              hills, Planete is where everyone wants to be. The location is
+              second to none, a short drive to Lake Kivu and 2 minutes away from
+              the Rubavu-Karongi road.
+            </p>
+
+            <motion.div
+              className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 rounded-lg shadow-lg"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <h3 className="text-xl font-bold text-white mb-3">
+                Our Unique Features
+              </h3>
+              <ul className="space-y-2">
+                <li className="flex items-center text-white">
+                  <FaBinoculars className="mr-2" /> Terrace with unique bird
+                  singing and sightings
+                </li>
+                <li className="flex items-center text-white">
+                  <FaUtensils className="mr-2" /> International favorites and
+                  fusion dishes with African flavors
+                </li>
+                <li className="flex items-center text-white">
+                  <FaHotel className="mr-2" /> 18 rooms: 15 guest rooms and 3
+                  for tour operators or drivers
+                </li>
+              </ul>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            className="relative"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <img
+              src="https://planete.onrender.com/img/outside(7).JPG"
+              alt="Planete Hotel"
+              className="rounded-lg shadow-2xl"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60 rounded-lg"></div>
+            <div className="absolute bottom-0 left-0 p-6">
+              <h3 className="text-2xl font-bold text-white mb-2">
+                Experience Luxury
+              </h3>
+              <p className="text-sm text-gray-300">
+                Unforgettable stays in the heart of Rwanda
+              </p>
+            </div>
+          </motion.div>
+        </div>
+
+        <motion.div variants={itemVariants} className="mt-12 text-center">
+          <a
+            href="#contact"
+            className="inline-block bg-white text-black font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition duration-300"
+          >
+            Book Your Stay Now
+          </a>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
