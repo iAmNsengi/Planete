@@ -17,7 +17,7 @@ const Layout = () => {
       <ContactUs />
       <FloatingWhatsApp
         accountName="Planete Hotel"
-        phoneNumber="250788426737"
+        phoneNumber="250785512860"
         statusMessage="Online"
         chatMessage="Welcome to Planete Hotel! How can we help you?"
         avatar="/logo_bg.jpeg"
