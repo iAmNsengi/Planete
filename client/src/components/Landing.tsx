@@ -1,17 +1,32 @@
-"use client";
+import React, { useCallback } from "react";
 import { motion } from "framer-motion";
 import { ImagesSlider } from "./ui/images-slider";
 import { Button } from "./ui/moving-border";
 import { BackgroundLines } from "./ui/background-lines";
 import { FlipWords } from "./ui/flip-words";
+import { useNavigate } from "react-router-dom";
 
-const Landing = () => {
+const Landing: React.FC = () => {
+  const navigate = useNavigate();
+
+  const navigateToBookRoom = useCallback(() => {
+    navigate("/#contact");
+    // Smooth scroll to the contact section after a short delay to ensure the navigation has completed
+    setTimeout(() => {
+      const contactSection = document.getElementById("contact");
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
+  }, [navigate]);
+
   const images = [
     "https://planete.onrender.com/img/outside(7).JPG",
     "https://planete.onrender.com/img/outside%20(4).JPG",
     "https://planete.onrender.com/img/room%20(5).JPG",
   ];
   const words = ["Hotel", "Restaurant", "Night Club"];
+
   return (
     <ImagesSlider images={images}>
       <motion.div
@@ -40,9 +55,10 @@ const Landing = () => {
         </BackgroundLines>
         <Button
           borderRadius="2.75rem"
-          className="bg-transparent z-50  dark:bg-slate-900 text-white dark:text-white border-neutral-800 dark:border-slate-800"
+          className="bg-transparent z-50 dark:bg-slate-900 text-white dark:text-white border-neutral-800 dark:border-slate-800"
+          onClick={navigateToBookRoom}
         >
-          Learn More
+          Book A Room
         </Button>
       </motion.div>
     </ImagesSlider>
