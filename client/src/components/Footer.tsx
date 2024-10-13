@@ -27,13 +27,12 @@ const Footer: React.FC = () => {
             className="flex flex-col items-center md:items-start"
           >
             <img
-              src="/path-to-your-logo.png"
+              src="logo.png"
               alt="Planete Hotel Logo"
-              className="w-32 h-auto mb-4"
+              className="w-40 h-auto mb-4 "
             />
             <p className="text-sm text-gray-400 text-center md:text-left">
-              Experience luxury and comfort at Planete Hotel. Your home away
-              from home.
+              Your home away from home.
             </p>
           </motion.div>
 
