@@ -74,7 +74,7 @@ const ContactUs = () => {
       </div>
       <div className="max-w-xl w-full mx-auto rounded-none md:rounded-2xl bg-bl p-4 md:p-8 md:py-32 shadow-input bg-white dark:bg-black">
         <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
-          Send us a message
+          Book a Room
         </h2>
 
         <form className="my-8" onSubmit={handleSubmit}>
@@ -117,6 +117,32 @@ const ContactUs = () => {
                 id="lastname"
                 placeholder="Doe"
                 type="text"
+                value={formData.lastname}
+                onChange={(e) =>
+                  setFormData({ ...formData, lastname: e.target.value })
+                }
+              />
+            </LabelInputContainer>
+          </div>
+          <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
+            <LabelInputContainer>
+              <Label htmlFor="firstname">Check In</Label>
+              <Input
+                id="firstname"
+                placeholder="John"
+                type="date"
+                value={formData.firstname}
+                onChange={(e) =>
+                  setFormData({ ...formData, firstname: e.target.value })
+                }
+              />
+            </LabelInputContainer>
+            <LabelInputContainer>
+              <Label htmlFor="lastname">Check Out</Label>
+              <Input
+                id="lastname"
+                placeholder="Doe"
+                type="date"
                 value={formData.lastname}
                 onChange={(e) =>
                   setFormData({ ...formData, lastname: e.target.value })
