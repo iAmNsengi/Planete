@@ -4,6 +4,8 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { IconLoader, IconX } from "@tabler/icons-react";
 
+const today = new Date().toISOString().split("T")[0];
+
 interface FormData {
   firstname: string;
   lastname: string;
@@ -18,8 +20,8 @@ const INITIAL_FORM_DATA: FormData = {
   lastname: "",
   email: "",
   message: "",
-  checkIn: "",
-  checkOut: "",
+  checkIn: today,
+  checkOut: today,
 };
 
 const ContactUs: React.FC = () => {
@@ -32,7 +34,6 @@ const ContactUs: React.FC = () => {
   const [minCheckOut, setMinCheckOut] = useState<string>("");
 
   useEffect(() => {
-    const today = new Date().toISOString().split("T")[0];
     setMinCheckIn(today);
     updateMinCheckOut(today);
   }, []);
