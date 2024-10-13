@@ -13,6 +13,8 @@ interface FormData {
   message: string;
   checkIn: string;
   checkOut: string;
+  roomType: string;
+  numberOfPeople: string;
 }
 
 const INITIAL_FORM_DATA: FormData = {
@@ -22,6 +24,8 @@ const INITIAL_FORM_DATA: FormData = {
   message: "",
   checkIn: today,
   checkOut: today,
+  roomType: "",
+  numberOfPeople: "",
 };
 
 const ContactUs: React.FC = () => {
@@ -185,6 +189,27 @@ const ContactUs: React.FC = () => {
               />
             </LabelInputContainer>
           </div>
+          <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4 mt-5">
+            <LabelInputContainer>
+              <Label htmlFor="checkIn">Type of Room</Label>
+              <Input
+                id="room_type"
+                name="room_type"
+                type="text"
+                value={formData.roomType}
+                onChange={handleInputChange}
+              />
+            </LabelInputContainer>
+            <LabelInputContainer>
+              <Label htmlFor="checkOut">Number Of People</Label>
+              <Input
+                id="numberOfPeople"
+                name="numberOfPeople"
+                type="text"
+                onChange={handleInputChange}
+              />
+            </LabelInputContainer>
+          </div>
 
           <LabelInputContainer className="mb-4">
             <Label htmlFor="email">Email Address</Label>
@@ -199,11 +224,11 @@ const ContactUs: React.FC = () => {
           </LabelInputContainer>
 
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="message">Message</Label>
+            <Label htmlFor="message">Special Request</Label>
             <textarea
-              id="message"
-              name="message"
-              placeholder="Message"
+              id="special_request"
+              name="special_request"
+              placeholder="Add any thing you want us to know!"
               value={formData.message}
               rows={6}
               className="bg-neutral-100 outline-none px-4 py-2 rounded-md text-black"
