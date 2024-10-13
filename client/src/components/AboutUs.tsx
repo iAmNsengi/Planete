@@ -34,11 +34,23 @@ const AboutUs = () => {
           your stay truly unforgettable.
         </p>
         <p className="text-base sm:text-lg text-neutral-400 leading-relaxed mt-4">
-          Our dedicated staff is here to ensure that your every need is met,
-          making you feel at home from the moment you arrive. Discover the best
-          of the city while enjoying the serene ambiance of our hotel. At
-          Planete Hotel, your satisfaction is our priority, and we look forward
-          to welcoming you to a world of sophistication and relaxation.
+          Beautiful terrace with an infinity unparalleled views of thousand
+          hills ,Planete is where everyone wants to be the location is second to
+          no one ,a short drive to lake kivu and 2 minutes away from the road
+          Rubavu-Karongi.
+        </p>
+        <p>Birds</p>
+        <p>
+          With a terrecace offering unique bird`s singing, international
+          favorites and fusion dishes with African flavors
+        </p>
+        <p>
+          Seeing birds like blue-breasted tit-strange weaver and white-browed
+          coucal and several other
+        </p>
+        <p>
+          Planete is a hotel of 18 rooms in total ,15 guest rooms and 3 for tour
+          operators or drivers
         </p>
       </motion.div>
 
