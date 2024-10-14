@@ -8,7 +8,7 @@ import { INITIAL_FORM_DATA } from "../utils/interfaces";
 const today = new Date().toISOString().split("T")[0];
 
 const ContactUs: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>(INITIAL_FORM_DATA);
+  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
   const [statusMessage, setStatusMessage] = useState<string>("");
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
