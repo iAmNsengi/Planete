@@ -13,7 +13,7 @@ const Landing: React.FC = () => {
     navigate("/#contact");
     // Smooth scroll to the contact section after a short delay to ensure the navigation has completed
     setTimeout(() => {
-      const contactSection = document.getElementById("contact");
+      const contactSection = document.getElementById("bookARoom");
       if (contactSection) {
         contactSection.scrollIntoView({ behavior: "smooth" });
       }
