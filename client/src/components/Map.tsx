@@ -63,7 +63,9 @@ const Map: React.FC = () => {
                 </div>
                 <div className="flex items-center space-x-4">
                   <FaPhone className="text-blue-500 text-xl" />
-                  <p className="text-gray-600">+(250) 78-8426737</p>
+                  <p className="text-gray-600">
+                    +(250) 78-3584816 Or +(250) 78-8426737
+                  </p>
                 </div>
                 <div className="flex items-center space-x-4">
                   <FaEnvelope className="text-blue-500 text-xl" />

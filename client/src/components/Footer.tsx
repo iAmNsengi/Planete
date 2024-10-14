@@ -16,8 +16,7 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="w-full bg-black bg-grid-white/[0.2] relative py-16 px-4">
-      <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+    <footer className="w-full bg-cyan-800  relative py-16 px-4">
       <div className="max-w-7xl mx-auto text-white">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <motion.div

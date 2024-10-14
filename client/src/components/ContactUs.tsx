@@ -3,30 +3,9 @@ import { cn } from "../lib/utils";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { IconLoader, IconX } from "@tabler/icons-react";
+import { INITIAL_FORM_DATA } from "../utils/interfaces";
 
 const today = new Date().toISOString().split("T")[0];
-
-interface FormData {
-  firstname: string;
-  lastname: string;
-  email: string;
-  message: string;
-  checkIn: string;
-  checkOut: string;
-  roomType: string;
-  numberOfPeople: string;
-}
-
-const INITIAL_FORM_DATA: FormData = {
-  firstname: "",
-  lastname: "",
-  email: "",
-  message: "",
-  checkIn: today,
-  checkOut: today,
-  roomType: "",
-  numberOfPeople: "",
-};
 
 const ContactUs: React.FC = () => {
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM_DATA);
