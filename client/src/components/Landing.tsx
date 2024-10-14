@@ -11,7 +11,6 @@ const Landing: React.FC = () => {
 
   const navigateToBookRoom = useCallback(() => {
     navigate("/#contact");
-    // Smooth scroll to the contact section after a short delay to ensure the navigation has completed
     setTimeout(() => {
       const contactSection = document.getElementById("bookARoom");
       if (contactSection) {
