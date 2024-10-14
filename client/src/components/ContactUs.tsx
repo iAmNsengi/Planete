@@ -23,9 +23,7 @@ const ContactUs: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (formData.checkIn) {
-      updateMinCheckOut(formData.checkIn);
-    }
+    if (formData.checkIn) updateMinCheckOut(formData.checkIn);
   }, [formData.checkIn]);
 
   const updateMinCheckOut = (date: string) => {
@@ -77,7 +75,7 @@ const ContactUs: React.FC = () => {
     } catch (error) {
       console.error("Error:", error);
       setStatusMessage(
-        "Couldn't book your room, please double-check your email and try again!"
+        "Booking unsuccessful, kindly check your email and try again!"
       );
       setSuccess(false);
     } finally {
