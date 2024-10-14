@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
             <h3 className="text-blue-400 font-bold mb-4 text-lg">
               OPENING HOURS
             </h3>
-            <p className="text-sm">Mon-Sun: 7:00 AM - 11:00 PM</p>
+            <p className="text-sm">Mon - Sun 24/7</p>
           </motion.div>
 
           <motion.div
