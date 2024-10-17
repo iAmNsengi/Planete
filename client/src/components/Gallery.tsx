@@ -21,7 +21,7 @@ const Gallery: React.FC = () => {
       const imageArray = [];
       for (let i = 1; i <= 100; i++) {
         imageArray.push({
-          src: `/images/image${i}.jpg`,
+          src: `/images/image${i}.jpeg`,
           alt: `Image ${i}`,
           description: `Description for image ${i}`,
         });
