@@ -208,11 +208,11 @@ const Gallery: React.FC = () => {
             </div>
           )}
           {/* Pagination Controls at the Bottom */}
-          <div className="flex justify-center mt-4 animate-fade-in">
+          <div className="flex justify-center mt-4 animate-fade-in py-10">
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
               disabled={currentPage === 0}
-              className="px-4 py-2 mx-2 text-white bg-blue-500 rounded hover:bg-blue-600 transition duration-300"
+              className="px-4 py-2 mx-2 text-orange-500 border border-orange-500 rounded transition duration-300"
             >
               Previous
             </button>
@@ -224,7 +224,7 @@ const Gallery: React.FC = () => {
                 setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1))
               }
               disabled={currentPage === totalPages - 1}
-              className="px-4 py-2 mx-2 text-white bg-blue-500 rounded hover:bg-blue-600 transition duration-300"
+              className={`px-4 py-2 mx-2 text-orange-500 border border-orange-500 transition duration-300`}
             >
               Next
             </button>
