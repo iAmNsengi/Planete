@@ -4,6 +4,7 @@ import { Highlight } from "./ui/hero-highlight";
 interface Image {
   src: string;
   alt: string;
+  description: string;
 }
 
 const Gallery: React.FC = () => {
@@ -11,23 +12,23 @@ const Gallery: React.FC = () => {
   const [galleryOpened, setGalleryOpened] = useState(false);
   const [activeImageUrl, setActiveImageUrl] = useState<string | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
+  const [currentPage, setCurrentPage] = useState(0);
+  const imagesPerPage = 10; // Number of images per page
 
   useEffect(() => {
-    // Simulating the image data that was originally in the HTML
-    setImages([
-      {
-        src: "https://planete.onrender.com/img/outside%20(16).JPG",
-        alt: "photo gallery image 01",
-      },
-      {
-        src: "https://planete.onrender.com/img/club%20(7).JPG",
-        alt: "photo gallery image 03",
-      },
-      {
-        src: "https://planete.onrender.com/img/outside%20(4).JPG",
-        alt: "photo gallery image 03",
-      },
-    ]);
+    // Loading images from public/images folder
+    const loadImages = async () => {
+      const imageArray = [];
+      for (let i = 1; i <= 100; i++) {
+        imageArray.push({
+          src: `/images/image${i}.jpg`,
+          alt: `Image ${i}`,
+          description: `Description for image ${i}`,
+        });
+      }
+      setImages(imageArray);
+    };
+    loadImages();
   }, []);
 
   const openGallery = useCallback(
@@ -69,6 +70,12 @@ const Gallery: React.FC = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [nextImage, prevImage, closeGallery]);
 
+  const totalPages = Math.ceil(images.length / imagesPerPage);
+  const paginatedImages = images.slice(
+    currentPage * imagesPerPage,
+    (currentPage + 1) * imagesPerPage
+  );
+
   return (
     <main className="bg-neutral-200" id="gallery">
       <section className="px-4 py-24 mx-auto max-w-7xl ">
@@ -91,14 +98,17 @@ const Gallery: React.FC = () => {
               id="gallery"
               className="grid gap-2 lg:gap-4 grid-cols-2 lg:grid-cols-3"
             >
-              {images.map((image, index) => (
+              {paginatedImages.map((image, index) => (
                 <li key={index}>
                   <img
-                    onClick={() => openGallery(index)}
+                    onClick={() =>
+                      openGallery(currentPage * imagesPerPage + index)
+                    }
                     src={image.src}
                     className="object-cover select-none w-full h-auto bg-gray-200 rounded-xl cursor-zoom-in aspect-[5/6] lg:aspect-[1/3] xl:aspect-[3/4]"
                     alt={image.alt}
                   />
+                  <p className="text-center">{image.description}</p>
                 </li>
               ))}
             </ul>
@@ -161,6 +171,26 @@ const Gallery: React.FC = () => {
               </div>
             </div>
           )}
+          {/* Pagination Controls */}
+          <div className="flex justify-center mt-4">
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
+              disabled={currentPage === 0}
+            >
+              Previous
+            </button>
+            <span className="mx-2">
+              Page {currentPage + 1} of {totalPages}
+            </span>
+            <button
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1))
+              }
+              disabled={currentPage === totalPages - 1}
+            >
+              Next
+            </button>
+          </div>
         </div>
       </section>
     </main>
