@@ -16,15 +16,28 @@ const Gallery: React.FC = () => {
   const imagesPerPage = 10; // Number of images per page
 
   useEffect(() => {
+    const checkImageExists = async (src: string): Promise<boolean> => {
+      try {
+        const response = await fetch(src, { method: "HEAD" });
+        return response.ok; // Returns true if the response status is 200-299
+      } catch (error) {
+        console.error(`Error checking image ${src}:`, error);
+        return false; // Return false if there's an error
+      }
+    };
     // Loading images from public/images folder
     const loadImages = async () => {
       const imageArray = [];
       for (let i = 1; i <= 100; i++) {
-        imageArray.push({
-          src: `/images/image${i}.jpeg`,
-          alt: `Image ${i}`,
-          description: `Description for image ${i}`,
-        });
+        const imageSrc = `/images/image${i}.jpeg`;
+        const imageExists = await checkImageExists(imageSrc); // Check if the image exists
+        if (imageExists) {
+          imageArray.push({
+            src: imageSrc,
+            alt: `Image ${i}`,
+            description: `Description for image ${i}`,
+          });
+        }
       }
       setImages(imageArray);
     };
@@ -142,7 +155,7 @@ const Gallery: React.FC = () => {
                   </svg>
                 </div>
                 <img
-                  className="object-cover w-full h-full select-none cursor-zoom-out"
+                  className="object-cover w-fit h-fit select-none cursor-zoom-out"
                   src={activeImageUrl || undefined}
                   alt=""
                 />
