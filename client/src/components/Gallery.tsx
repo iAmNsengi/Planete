@@ -18,8 +18,10 @@ const Gallery: React.FC = () => {
   useEffect(() => {
     const checkImageExists = async (src: string): Promise<boolean> => {
       try {
-        const response = await fetch(src, { method: "HEAD" });
-        return response.ok; // Returns true if the response status is 200-299
+        const response = await fetch(src);
+        console.log(response);
+
+        return response.ok;
       } catch (error) {
         console.error(`Error checking image ${src}:`, error);
         return false; // Return false if there's an error
@@ -28,9 +30,9 @@ const Gallery: React.FC = () => {
     // Loading images from public/images folder
     const loadImages = async () => {
       const imageArray = [];
-      for (let i = 1; i <= 100; i++) {
+      for (let i = 1; i <= 9; i++) {
         const imageSrc = `/images/image${i}.jpeg`;
-        const imageExists = await checkImageExists(imageSrc); // Check if the image exists
+        const imageExists = await checkImageExists(imageSrc);
         if (imageExists) {
           imageArray.push({
             src: imageSrc,
