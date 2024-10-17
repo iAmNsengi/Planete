@@ -101,6 +101,29 @@ const Gallery: React.FC = () => {
         </div>
       </section>
 
+      {/* Pagination Controls at the Top */}
+      <div className="flex justify-center mt-4 animate-fade-in">
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
+          disabled={currentPage === 0}
+          className="px-4 py-2 mx-2 text-white bg-blue-500 rounded hover:bg-blue-600 transition duration-300"
+        >
+          Previous
+        </button>
+        <span className="mx-2 text-lg">
+          Page {currentPage + 1} of {totalPages}
+        </span>
+        <button
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1))
+          }
+          disabled={currentPage === totalPages - 1}
+          className="px-4 py-2 mx-2 text-white bg-blue-500 rounded hover:bg-blue-600 transition duration-300"
+        >
+          Next
+        </button>
+      </div>
+
       <section>
         <div className="w-full h-full min-h-screen select-none">
           <div
@@ -184,15 +207,16 @@ const Gallery: React.FC = () => {
               </div>
             </div>
           )}
-          {/* Pagination Controls */}
-          <div className="flex justify-center mt-4">
+          {/* Pagination Controls at the Bottom */}
+          <div className="flex justify-center mt-4 animate-fade-in">
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
               disabled={currentPage === 0}
+              className="px-4 py-2 mx-2 text-white bg-blue-500 rounded hover:bg-blue-600 transition duration-300"
             >
               Previous
             </button>
-            <span className="mx-2">
+            <span className="mx-2 text-lg">
               Page {currentPage + 1} of {totalPages}
             </span>
             <button
@@ -200,6 +224,7 @@ const Gallery: React.FC = () => {
                 setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1))
               }
               disabled={currentPage === totalPages - 1}
+              className="px-4 py-2 mx-2 text-white bg-blue-500 rounded hover:bg-blue-600 transition duration-300"
             >
               Next
             </button>
