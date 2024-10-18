@@ -30,7 +30,7 @@ const Gallery: React.FC = () => {
     // Loading images from public/images folder
     const loadImages = async () => {
       const imageArray = [];
-      for (let i = 1; i <= 9; i++) {
+      for (let i = 1; i <= 17; i++) {
         const imageSrc = `/images/image${i}.jpeg`;
         const imageExists = await checkImageExists(imageSrc);
         if (imageExists) {
