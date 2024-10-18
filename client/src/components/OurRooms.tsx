@@ -45,19 +45,19 @@ const OurRooms: React.FC = () => {
               imgSrc: "https://planete.onrender.com/img/room%20(5).JPG",
               title: "Deluxe Room",
               description: "Enjoy luxury and comfort in our deluxe rooms.",
-              price: "$150/night",
+              price: "$90/night",
             },
             {
-              imgSrc: "https://planete.onrender.com/img/room%20(5).JPG",
+              imgSrc: "images/room1.jpeg",
               title: "Standard Room",
               description: "A cozy stay with all essential amenities.",
               price: "$100/night",
             },
             {
-              imgSrc: "https://planete.onrender.com/img/room%20(5).JPG",
+              imgSrc: "images/room2.jpeg",
               title: "Suite",
               description: "Experience elegance in our spacious suites.",
-              price: "$250/night",
+              price: "$80/night",
             },
           ].map((room, index) => (
             <motion.div
