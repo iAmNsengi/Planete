@@ -14,6 +14,7 @@ const Gallery: React.FC = () => {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(0);
   const imagesPerPage = 6; // Number of images per page
+  const [loading, setLoading] = useState(true); // New state for loading
 
   useEffect(() => {
     const checkImageExists = async (src: string): Promise<boolean> => {
@@ -29,6 +30,7 @@ const Gallery: React.FC = () => {
     };
     // Loading images from public/images folder
     const loadImages = async () => {
+      setLoading(true); // Set loading to true when starting to load images
       const imageArray = [];
       for (let i = 1; i <= 17; i++) {
         const imageSrc = `/images/image${i}.jpeg`;
@@ -42,6 +44,7 @@ const Gallery: React.FC = () => {
         }
       }
       setImages(imageArray);
+      setLoading(false); // Set loading to false after images are loaded
     };
     loadImages();
   }, []);
@@ -93,6 +96,10 @@ const Gallery: React.FC = () => {
 
   return (
     <main className="bg-neutral-200" id="gallery">
+      {/* Loading Bar */}
+      {loading && (
+        <div className="fixed top-0 left-0 w-full h-1 bg-blue-500 animate-loading-bar" />
+      )}
       <section className="px-4 py-24 mx-auto max-w-7xl ">
         <div className="w-full mx-auto text-left md:w-11/12 xl:w-9/12 md:text-center">
           <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-700 to-white dark:from-neutral-600 dark:to-white text-5xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
