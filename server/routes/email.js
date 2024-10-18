@@ -31,17 +31,30 @@ router.post("/message", async (req, res) => {
         <code> <br><br> Planete Hotel Management Team </code>
       `,
       }),
-      transporter.sendMail({
-        from: email,
-        to: "info.planetehotelrwanda@gmail.com",
-        subject: `Message from ${firstname} ${lastname}`,
-        text: `${message}`,
-        html: `
+      transporter.sendMail(
+        {
+          from: email,
+          to: "maplanetehotel@gmail.com",
+          subject: `Message from ${firstname} ${lastname}`,
+          text: `${message}`,
+          html: `
         <h1>New message from ${firstname} ${lastname}</h1>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Message:</strong> ${message}</p>
       `,
-      }),
+        },
+        {
+          from: email,
+          to: "info.planetehotelrwanda@gmail.com",
+          subject: `Message from ${firstname} ${lastname}`,
+          text: `${message}`,
+          html: `
+        <h1>New message from ${firstname} ${lastname}</h1>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong> ${message}</p>
+      `,
+        }
+      ),
     ]);
 
     const newMessage = new Message({
