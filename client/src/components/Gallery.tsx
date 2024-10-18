@@ -104,7 +104,7 @@ const Gallery: React.FC = () => {
       </section>
 
       {/* Pagination Controls at the Top */}
-      <div className="flex justify-center mt-4 animate-fade-in pb-10 -mt-20">
+      <div className="flex justify-center animate-fade-in pb-10 -mt-20">
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
           disabled={currentPage === 0}
