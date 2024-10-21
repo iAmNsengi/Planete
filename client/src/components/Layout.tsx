@@ -7,6 +7,8 @@ import Footer from "./Footer";
 import Map from "./Map";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
 import OurRooms from "./OurRooms";
+
+
 const Layout = () => {
   return (
     <div className="">
