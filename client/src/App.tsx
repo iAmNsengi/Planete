@@ -53,7 +53,6 @@ const AuthChecker = ({ children }: { children: React.ReactNode }) => {
       <div className="rounded-md h-12 w-12 border-4 border-t-4 border-blue-500 animate-spin absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
     );
   }
-
   return isAuthenticated ? <>{children}</> : null;
 };
 
