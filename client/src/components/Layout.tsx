@@ -8,6 +8,7 @@ import Map from "./Map";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
 import OurRooms from "./OurRooms";
 import Amenities from "./Amenities";
+
 const Layout = () => {
   return (
     <div className="">
