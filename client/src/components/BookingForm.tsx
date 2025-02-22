@@ -124,6 +124,8 @@ const BookingForm = () => {
             updateFormData={updateFormData}
             onNext={() => setStep("confirmation")}
             onBack={() => setStep("dates")}
+            errors={errors}
+            validateStep={validateStep}
           />
         );
       case "confirmation":
@@ -227,7 +229,14 @@ const DateSelection = ({ formData, updateFormData, onNext, onBack }: any) => (
   </div>
 );
 
-const RoomSelection = ({ formData, updateFormData, onNext, onBack }: any) => (
+const RoomSelection = ({
+  formData,
+  updateFormData,
+  onNext,
+  onBack,
+  errors,
+  validateStep,
+}: any) => (
   <div className="space-y-6">
     <h2 className="text-2xl font-bold mb-6">Select Your Room</h2>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
