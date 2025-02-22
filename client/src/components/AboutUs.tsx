@@ -26,7 +26,7 @@ const AboutUs: React.FC = () => {
   return (
     <div
       id="about"
-      className="relative min-h-screen  py-20 px-4 sm:px-6 lg:px-8 lg:py-40"
+      className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8 lg:py-40 bg-opacity-40"
     >
       <motion.div
         className="max-w-7xl mx-auto"

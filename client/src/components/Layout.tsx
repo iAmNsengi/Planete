@@ -8,18 +8,34 @@ import BookingForm from "./BookingForm";
 import Map from "./Map";
 import Footer from "./Footer";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
+import OurRooms from "./OurRooms";
 
 const Layout = () => {
   return (
-    <div className="">
+    <div className="bg-gradient-to-b from-gray-50 to-white">
       <Navbar />
       <Hero />
-      <AboutUs />
-      <Gallery />
-      <Activities />
-      <Testimonials />
-      <BookingForm />
-      <Map />
+      <div className="bg-gradient-to-b from-white to-gray-50">
+        <AboutUs />
+      </div>
+      <div className="bg-gradient-to-b from-gray-50 to-cyan-900">
+        <OurRooms />
+      </div>
+      <div className="bg-gradient-to-b from-cyan-900 to-gray-50">
+        <Activities />
+      </div>
+      <div className="bg-gradient-to-b from-gray-50 to-white">
+        <Gallery />
+      </div>
+      <div className="bg-gradient-to-b from-white to-gray-100">
+        <Testimonials />
+      </div>
+      <div className="bg-gradient-to-b from-gray-100 to-cyan-900">
+        <BookingForm />
+      </div>
+      <div className="bg-gradient-to-b from-cyan-900 to-white">
+        <Map />
+      </div>
       <FloatingWhatsApp
         accountName="Planete Hotel"
         phoneNumber="250785512860"

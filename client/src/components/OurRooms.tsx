@@ -6,7 +6,7 @@ import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 const OurRooms: React.FC = () => {
   const rooms = [
     {
-      imgSrc: "/birdhouse.jpg",
+      imgSrc: "/images/image14.jpeg",
       title: "Birdhouse",
       description:
         "Our Birdhouses highlight the benefits of tiny house living with a goal of maximizing efficiency of space while minimizing our impact on the environment.",
@@ -14,7 +14,7 @@ const OurRooms: React.FC = () => {
       features: ["Lake View", "Private Balcony", "Eco-friendly Design"],
     },
     {
-      imgSrc: "/pod.jpg",
+      imgSrc: "/landing3.JPG",
       title: "Pod",
       description:
         "The expansive Lake views are projected into a very comfortable and protected room space, through sweeping, floor-to-ceiling sliding doors and a shower with a view.",
@@ -22,7 +22,7 @@ const OurRooms: React.FC = () => {
       features: ["Panoramic Views", "Luxury Shower", "Modern Design"],
     },
     {
-      imgSrc: "/bungalow.jpg",
+      imgSrc: "/images/image13.jpeg",
       title: "Bungalow",
       description:
         "Consisting of a bedroom and living room (which can host an extra king bed), the Bungalow is our most spacious unit designed for honeymooners or groups of friends.",

@@ -12,7 +12,7 @@ const Map: React.FC = () => {
       animate="visible"
     >
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-center text-black text-5xl md:text-4xl lg:text-7xl font-sans md:py-10 relative z-20 font-bold tracking-tight">
+        <h2 className="text-center text-white text-5xl md:text-4xl lg:text-7xl font-sans md:py-10 relative z-20 font-bold tracking-tight">
           Find Us {"  "}
           <Highlight className="bg-cyan-800 text-white">Here</Highlight>
           <br />

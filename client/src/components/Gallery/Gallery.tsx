@@ -59,7 +59,7 @@ const Gallery = () => {
       : images.filter((img) => img.category === selectedCategory);
 
   return (
-    <div id="gallery" className="min-h-screen bg-gray-50 py-20 px-4">
+    <div id="gallery" className="min-h-screen py-20 px-4 bg-opacity-40">
       <div className="max-w-7xl mx-auto">
         <motion.h2
           className="text-4xl md:text-6xl font-bold text-center mb-12"
