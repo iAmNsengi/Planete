@@ -40,7 +40,8 @@ export const SparklesCore = ({
       return {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * (maxSize || 3 - minSize || 1) + (minSize || 1),
+        size:
+          Math.random() * ((maxSize || 3) - (minSize || 1)) + (minSize || 1),
         speedX: Math.random() * 2 - 1,
         speedY: Math.random() * 2 - 1,
       };
