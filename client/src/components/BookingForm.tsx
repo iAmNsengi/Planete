@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { z } from "zod"; // Add zod for validation
+import { Highlight } from "./ui/hero-highlight";
 
 const formSchema = z.object({
   firstName: z.string().min(2, "First name is required"),
@@ -141,12 +142,14 @@ const BookingForm = () => {
   };
 
   return (
-    <div id="bookARoom" className="min-h-screen bg-gray-50 py-20">
+    <div id="bookARoom" className="min-h-screen h-full bg-gray-50 py-20">
       <div className="max-w-7xl mx-auto px-4">
-        <h1 className="text-4xl font-bold text-center mb-12">
-          Book Your Perfect Stay
-        </h1>
-        <div className="max-w-3xl mx-auto">
+        <h2 className="text-center text-black text-5xl md:text-4xl lg:text-7xl font-sans md:py-10 relative z-20 font-bold tracking-tight">
+          Book Your {"  "}
+          <Highlight className="bg-cyan-800 text-white">Perfect Stay</Highlight>
+          <br />
+        </h2>
+        <div className="max-w-3xl mx-auto pt-24">
           <AnimatePresence mode="wait">
             <motion.div
               key={step}

@@ -12,16 +12,13 @@ const Map: React.FC = () => {
       animate="visible"
     >
       <div className="max-w-7xl mx-auto">
-        <motion.h2
-          className="text-4xl font-extrabold text-center text-gray-900 mb-12"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          Find<Highlight className="bg-cyan-800 text-white"> Us Here</Highlight>
-        </motion.h2>
+        <h2 className="text-center text-black text-5xl md:text-4xl lg:text-7xl font-sans md:py-10 relative z-20 font-bold tracking-tight">
+          Find Us {"  "}
+          <Highlight className="bg-cyan-800 text-white">Here</Highlight>
+          <br />
+        </h2>
 
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 pt-10">
           <motion.div className="w-full lg:w-1/2">
             <div className="bg-white rounded-lg shadow-xl p-8">
               <h3 className="text-2xl font-bold text-gray-800 mb-6">

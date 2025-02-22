@@ -52,17 +52,13 @@ const Activities = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.h2
-          className="text-4xl md:text-6xl text-center text-white font-bold mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Explore Our
+        <h2 className="text-center text-white text-5xl md:text-4xl lg:text-7xl font-sans md:py-10 relative z-20 font-bold tracking-tight">
+          Explore Our{"   "}
           <Highlight className="bg-cyan-800 text-white"> Activities</Highlight>
-        </motion.h2>
+          <br />
+        </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-10">
           {activities.map((activity, index) => (
             <motion.div
               key={index}

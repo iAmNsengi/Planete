@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
+import { Highlight } from "./ui/hero-highlight";
 
 const testimonials = [
   {
@@ -27,15 +28,13 @@ const Testimonials = () => {
   return (
     <div className="py-20 bg-gradient-to-b from-gray-100 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          className="text-4xl font-bold text-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          What Our Guests Say
-        </motion.h2>
+        <h2 className="text-center text-black text-5xl md:text-4xl lg:text-7xl font-sans md:py-10 relative z-20 font-bold tracking-tight">
+          What Our {"  "}
+          <Highlight className="bg-cyan-800 text-white">Guests Say</Highlight>
+          <br />
+        </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-10">
           {testimonials.map((testimonial, index) => (
             <CardContainer key={index}>
               <CardBody className="bg-white p-6 rounded-xl shadow-xl">

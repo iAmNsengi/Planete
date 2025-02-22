@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="w-full bg-cyan-800  relative py-16 px-4">
+    <footer className="w-full bg-cyan-900  relative py-16 px-4">
       <div className="max-w-7xl mx-auto text-white">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <motion.div
@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <h3 className="text-blue-400 font-bold mb-4 text-lg">ADDRESS</h3>
+            <h3 className="text-white font-bold mb-4 text-lg">ADDRESS</h3>
             <p className="text-sm">Rubavu / Rugerero/ Rugerero</p>
             <p className="text-sm">Kabarora</p>
           </motion.div>
@@ -50,9 +50,7 @@ const Footer: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h3 className="text-blue-400 font-bold mb-4 text-lg">
-              OPENING HOURS
-            </h3>
+            <h3 className="text-white font-bold mb-4 text-lg">OPENING HOURS</h3>
             <p className="text-sm">Mon - Sun 24/7</p>
           </motion.div>
 
@@ -61,9 +59,7 @@ const Footer: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <h3 className="text-blue-400 font-bold mb-4 text-lg">
-              CONTACT INFO
-            </h3>
+            <h3 className="text-white font-bold mb-4 text-lg">CONTACT INFO</h3>
             <p className="text-sm">Phone: +(250) 78-8426737</p>
             <p className="text-sm">Phone: +(250) 78-3584816</p>
             <p className="text-sm">Email: maplanetehotel@gmail.com</p>
@@ -81,7 +77,7 @@ const Footer: React.FC = () => {
               key={label}
               href={href}
               aria-label={label}
-              className="text-white hover:text-blue-400 transition-colors duration-300"
+              className="text-white hover:text-white transition-colors duration-300"
             >
               <Icon className="text-2xl" />
             </a>
@@ -96,7 +92,7 @@ const Footer: React.FC = () => {
         />
 
         <motion.div
-          className="text-center text-sm text-gray-400"
+          className="text-center text-lg text-white"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
@@ -104,17 +100,17 @@ const Footer: React.FC = () => {
           © {new Date().getFullYear()} Planete Hotel. All rights reserved.
           Designed by{" "}
           <a
-            className="text-blue-400 hover:text-blue-300 transition-colors duration-300"
+            className="text-white  hover:text-blue-300 transition-colors duration-300 underline"
             href="https://keyypress.onrender.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Keyy<span className={"text-orange-600 font-bold"}>Press</span> 
+            Keyy<span className={"text-orange-600 font-bold"}>Press</span>
           </a>
         </motion.div>
       </div>
     </footer>
   );
 };
- 
+
 export default Footer;

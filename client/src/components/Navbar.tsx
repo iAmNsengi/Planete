@@ -46,6 +46,7 @@ const Navbar = () => {
         setIsAuthenticated(response.data.success);
       } catch (error) {
         setIsAuthenticated(false);
+        console.log(error);
       }
     }
   };
