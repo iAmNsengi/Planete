@@ -17,12 +17,12 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const navItems = [
-    { href: "/#about", label: "About" },
-    { href: "/#rooms", label: "Rooms" },
-    { href: "/#gallery", label: "Gallery" },
-    { href: "/#activities", label: "Activities" },
-    { href: "/#findUs", label: "Contact" },
-    { href: "/#bookARoom", label: "Book Now", isButton: true },
+    { href: "about", label: "About" },
+    { href: "rooms", label: "Rooms" },
+    { href: "gallery", label: "Gallery" },
+    { href: "activities", label: "Activities" },
+    { href: "findUs", label: "Contact" },
+    { href: "bookARoom", label: "Book Now", isButton: true },
   ];
 
   useEffect(() => {
@@ -55,13 +55,22 @@ const Navbar = () => {
     checkAuthentication();
   }, []);
 
-  const handleNavigation = (href: string) => {
+  const scrollToSection = (sectionId: string) => {
     setIsMobileMenuOpen(false);
-    if (href.startsWith("/#")) {
-      const element = document.getElementById(href.substring(2));
-      element?.scrollIntoView({ behavior: "smooth" });
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
+  const handleNavigation = (href: string) => {
+    if (href === "login" || href === "dashboard") {
+      navigate(`/${href}`);
     } else {
-      navigate(href);
+      scrollToSection(href);
     }
   };
 
@@ -82,7 +91,7 @@ const Navbar = () => {
                 src="/logo.png"
                 alt="Planete Hotel"
                 className="h-12 w-auto cursor-pointer"
-                onClick={() => handleNavigation("/")}
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               />
             </div>
 
@@ -105,7 +114,7 @@ const Navbar = () => {
               ))}
               {isAuthenticated ? (
                 <button
-                  onClick={() => handleNavigation("/dashboard")}
+                  onClick={() => handleNavigation("dashboard")}
                   className="flex items-center space-x-1 text-cyan-800"
                 >
                   <IconDashboard size={20} />
@@ -113,7 +122,7 @@ const Navbar = () => {
                 </button>
               ) : (
                 <button
-                  onClick={() => handleNavigation("/login")}
+                  onClick={() => handleNavigation("login")}
                   className="text-cyan-800"
                 >
                   <IconLogin size={24} />
@@ -166,7 +175,7 @@ const Navbar = () => {
                 ))}
                 {isAuthenticated ? (
                   <button
-                    onClick={() => handleNavigation("/dashboard")}
+                    onClick={() => handleNavigation("dashboard")}
                     className="flex items-center space-x-2 px-4 py-2 text-cyan-800 w-full"
                   >
                     <IconDashboard size={20} />
@@ -174,7 +183,7 @@ const Navbar = () => {
                   </button>
                 ) : (
                   <button
-                    onClick={() => handleNavigation("/login")}
+                    onClick={() => handleNavigation("login")}
                     className="flex items-center space-x-2 px-4 py-2 text-cyan-800 w-full"
                   >
                     <IconLogin size={20} />

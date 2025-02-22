@@ -38,7 +38,10 @@ const activities = [
 
 const Activities = () => {
   return (
-    <div className="relative h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
+    <div
+      className="relative h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md"
+      id="activities"
+    >
       <div className="w-full absolute inset-0 h-screen">
         <SparklesCore
           id="tsparticles"
