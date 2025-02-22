@@ -142,7 +142,7 @@ const BookingForm = () => {
   };
 
   return (
-    <div id="bookARoom" className="min-h-screen h-full bg-gray-300 py-20">
+    <div id="bookARoom" className="min-h-screen h-full bg-gray-100 py-20">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-center text-black text-5xl md:text-4xl lg:text-7xl font-sans md:py-10 relative z-20 font-bold tracking-tight">
           Book Your {"  "}
