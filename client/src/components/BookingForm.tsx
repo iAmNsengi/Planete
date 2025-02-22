@@ -1,11 +1,49 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { z } from "zod"; // Add zod for validation
 
-type BookingStep = "details" | "dates" | "rooms" | "confirmation";
+const formSchema = z.object({
+  firstName: z.string().min(2, "First name is required"),
+  lastName: z.string().min(2, "Last name is required"),
+  email: z.string().email("Invalid email address"),
+  checkIn: z.string().min(1, "Check-in date is required"),
+  checkOut: z.string().min(1, "Check-out date is required"),
+  roomType: z.string().min(1, "Room type is required"),
+  guests: z.number().min(1).max(4),
+});
+
+const rooms = [
+  {
+    id: "birdhouse",
+    title: "Birdhouse",
+    image: "/birdhouse.jpg",
+    price: "$90/night",
+    description: "Perfect for nature lovers with panoramic views",
+    maxGuests: 2,
+  },
+  {
+    id: "pod",
+    title: "Pod",
+    image: "/pod.jpg",
+    price: "$100/night",
+    description: "Modern comfort with lake views",
+    maxGuests: 2,
+  },
+  {
+    id: "bungalow",
+    title: "Bungalow",
+    image: "/bungalow.jpg",
+    price: "$150/night",
+    description: "Spacious suite perfect for families",
+    maxGuests: 4,
+  },
+];
 
 const BookingForm = () => {
-  const [step, setStep] = useState<BookingStep>("details");
+  const [step, setStep] = useState<
+    "details" | "dates" | "rooms" | "confirmation"
+  >("details");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -15,6 +53,46 @@ const BookingForm = () => {
     roomType: "",
     guests: 1,
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const validateStep = () => {
+    try {
+      switch (step) {
+        case "details":
+          z.object({
+            firstName: formSchema.shape.firstName,
+            lastName: formSchema.shape.lastName,
+            email: formSchema.shape.email,
+          }).parse(formData);
+          return true;
+        case "dates":
+          z.object({
+            checkIn: formSchema.shape.checkIn,
+            checkOut: formSchema.shape.checkOut,
+          }).parse(formData);
+          return true;
+        case "rooms":
+          z.object({
+            roomType: formSchema.shape.roomType,
+            guests: formSchema.shape.guests,
+          }).parse(formData);
+          return true;
+        default:
+          return true;
+      }
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const newErrors: Record<string, string> = {};
+        error.errors.forEach((err) => {
+          if (err.path) {
+            newErrors[err.path[0]] = err.message;
+          }
+        });
+        setErrors(newErrors);
+      }
+      return false;
+    }
+  };
 
   const updateFormData = (data: Partial<typeof formData>) => {
     setFormData((prev) => ({ ...prev, ...data }));
@@ -60,19 +138,24 @@ const BookingForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-20">
-      <div className="max-w-3xl mx-auto">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={step}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            className="bg-white rounded-xl shadow-lg p-8"
-          >
-            {renderStep()}
-          </motion.div>
-        </AnimatePresence>
+    <div id="bookARoom" className="min-h-screen bg-gray-50 py-20">
+      <div className="max-w-7xl mx-auto px-4">
+        <h1 className="text-4xl font-bold text-center mb-12">
+          Book Your Perfect Stay
+        </h1>
+        <div className="max-w-3xl mx-auto">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={step}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="bg-white rounded-xl shadow-lg p-8"
+            >
+              {renderStep()}
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </div>
   );
@@ -145,27 +228,49 @@ const DateSelection = ({ formData, updateFormData, onNext, onBack }: any) => (
 );
 
 const RoomSelection = ({ formData, updateFormData, onNext, onBack }: any) => (
-  <div className="space-y-4">
-    <h2 className="text-2xl font-bold mb-6">Select Room</h2>
-    <select
-      value={formData.roomType}
-      onChange={(e) => updateFormData({ roomType: e.target.value })}
-      className="w-full p-2 border rounded"
-    >
-      <option value="">Select a room type</option>
-      <option value="birdhouse">Birdhouse</option>
-      <option value="pod">Pod</option>
-      <option value="bungalow">Bungalow</option>
-    </select>
-    <input
-      type="number"
-      min="1"
-      max="4"
-      value={formData.guests}
-      onChange={(e) => updateFormData({ guests: parseInt(e.target.value) })}
-      className="w-full p-2 border rounded"
-      placeholder="Number of guests"
-    />
+  <div className="space-y-6">
+    <h2 className="text-2xl font-bold mb-6">Select Your Room</h2>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {rooms.map((room) => (
+        <motion.div
+          key={room.id}
+          className={`relative rounded-lg overflow-hidden cursor-pointer ${
+            formData.roomType === room.id ? "ring-2 ring-cyan-800" : ""
+          }`}
+          whileHover={{ scale: 1.02 }}
+          onClick={() => updateFormData({ roomType: room.id })}
+        >
+          <img
+            src={room.image}
+            alt={room.title}
+            className="w-full h-48 object-cover"
+          />
+          <div className="p-4">
+            <h3 className="font-bold text-lg">{room.title}</h3>
+            <p className="text-gray-600 text-sm">{room.description}</p>
+            <p className="text-cyan-800 font-bold mt-2">{room.price}</p>
+            <p className="text-sm text-gray-500">
+              Up to {room.maxGuests} guests
+            </p>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+    {errors.roomType && (
+      <p className="text-red-500 text-sm">{errors.roomType}</p>
+    )}
+    <div className="mt-6">
+      <input
+        type="number"
+        min="1"
+        max="4"
+        value={formData.guests}
+        onChange={(e) => updateFormData({ guests: parseInt(e.target.value) })}
+        className="w-full p-2 border rounded"
+        placeholder="Number of guests"
+      />
+      {errors.guests && <p className="text-red-500 text-sm">{errors.guests}</p>}
+    </div>
     <div className="flex gap-4">
       <button
         onClick={onBack}
@@ -174,7 +279,9 @@ const RoomSelection = ({ formData, updateFormData, onNext, onBack }: any) => (
         Back
       </button>
       <button
-        onClick={onNext}
+        onClick={() => {
+          if (validateStep()) onNext();
+        }}
         className="w-full bg-cyan-800 text-white py-2 rounded hover:bg-cyan-900"
       >
         Next

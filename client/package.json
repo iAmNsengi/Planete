@@ -36,7 +36,8 @@
     "tailwind-merge": "^2.5.3",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.169.0",
-    "three-globe": "^2.32.0"
+    "three-globe": "^2.32.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
