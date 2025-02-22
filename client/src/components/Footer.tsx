@@ -105,16 +105,16 @@ const Footer: React.FC = () => {
           Designed by{" "}
           <a
             className="text-blue-400 hover:text-blue-300 transition-colors duration-300"
-            href="https://nsengixp.onrender.com"
+            href="https://keyypress.onrender.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            zersquare.dev
+            Keyy<span className={"text-orange-600 font-bold"}>Press</span> 
           </a>
         </motion.div>
       </div>
     </footer>
   );
 };
-
+ 
 export default Footer;

@@ -1,25 +1,25 @@
+import Hero from "./Hero";
 import AboutUs from "./AboutUs";
 import Gallery from "./Gallery/Gallery";
-import Landing from "./Landing";
 import Navbar from "./Navbar";
-import ContactUs from "./BookARoom";
-import Footer from "./Footer";
+import Activities from "./Activities";
+import Testimonials from "./Testimonials";
+import BookingForm from "./BookingForm";
 import Map from "./Map";
+import Footer from "./Footer";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
-import OurRooms from "./OurRooms";
-import Amenities from "./Amenities";
 
 const Layout = () => {
   return (
     <div className="">
       <Navbar />
-      <Landing />
+      <Hero />
       <AboutUs />
       <Gallery />
-      <Amenities />
-      <OurRooms />
+      <Activities />
+      <Testimonials />
+      <BookingForm />
       <Map />
-      <ContactUs />
       <FloatingWhatsApp
         accountName="Planete Hotel"
         phoneNumber="250785512860"
