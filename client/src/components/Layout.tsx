@@ -9,10 +9,12 @@ import Map from "./Map";
 import Footer from "./Footer";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
 import OurRooms from "./OurRooms";
+import { PatternOverlay } from "./ui/pattern-overlay";
 
 const Layout = () => {
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-white">
+    <div className="bg-gradient-to-b from-gray-50 to-white relative">
+      <PatternOverlay />
       <Navbar />
       <Hero />
       <div className="bg-gradient-to-b from-white to-gray-50">

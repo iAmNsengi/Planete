@@ -1,6 +1,7 @@
 "use client";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 import { Highlight } from "./ui/hero-highlight";
+import { SparklesCore } from "./ui/sparkles";
 
 const testimonials = [
   {
@@ -26,6 +27,17 @@ const testimonials = [
 const Testimonials = () => {
   return (
     <div className="py-20 bg-white bg-opacity-60">
+      <div className="w-full absolute inset-0 h-screen">
+        <SparklesCore
+          id="tsparticles"
+          background="transparent"
+          minSize={0.6}
+          maxSize={1.4}
+          particleDensity={100}
+          className="w-full h-full"
+          particleColor="#FFFFFF"
+        />
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-center text-black text-5xl md:text-4xl lg:text-7xl font-sans md:py-10 relative z-20 font-bold tracking-tight">
           What Our {"  "}
