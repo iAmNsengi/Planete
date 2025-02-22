@@ -8,7 +8,7 @@ const activities = [
     title: "Lake Kivu Boat Tours",
     description:
       "Experience the beauty of Lake Kivu with our guided boat tours.",
-    image: "/boat-tour.jpg",
+    image: "/images/image14.jpeg",
     duration: "2-3 hours",
     price: "$50/person",
   },
@@ -16,21 +16,21 @@ const activities = [
     title: "Coffee Experience",
     description:
       "Visit local coffee plantations and learn about Rwanda's coffee culture.",
-    image: "/coffee.jpg",
+    image: "/images/image14.jpeg",
     duration: "Half day",
     price: "$35/person",
   },
   {
     title: "Cultural Village Visit",
     description: "Immerse yourself in traditional Rwandan culture and customs.",
-    image: "/cultural.jpg",
+    image: "/images/image14.jpeg",
     duration: "4 hours",
     price: "$40/person",
   },
   {
     title: "Hiking Adventures",
     description: "Guided hiking tours through the beautiful hills of Rubavu.",
-    image: "/hiking.jpg",
+    image: "/images/image14.jpeg",
     duration: "2-6 hours",
     price: "From $30/person",
   },

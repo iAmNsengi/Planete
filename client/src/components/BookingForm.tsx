@@ -18,8 +18,8 @@ const formSchema = z.object({
 const rooms = [
   {
     id: "birdhouse",
-    title: "Birdhouse",
-    image: "/birdhouse.jpg",
+    title: "Double Bed",
+    image: "/landing3.JPG",
     price: "$90/night",
     description: "Perfect for nature lovers with panoramic views",
     maxGuests: 2,
@@ -27,7 +27,7 @@ const rooms = [
   {
     id: "pod",
     title: "Pod",
-    image: "/pod.jpg",
+    image: "/landing3.JPG",
     price: "$100/night",
     description: "Modern comfort with lake views",
     maxGuests: 2,
@@ -35,7 +35,7 @@ const rooms = [
   {
     id: "bungalow",
     title: "Bungalow",
-    image: "/bungalow.jpg",
+    image: "/landing3.JPG",
     price: "$150/night",
     description: "Spacious suite perfect for families",
     maxGuests: 4,

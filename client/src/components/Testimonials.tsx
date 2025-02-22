@@ -6,19 +6,19 @@ const testimonials = [
   {
     name: "Sarah Johnson",
     role: "Business Traveler",
-    image: "/testimonial1.jpg",
+    image: "/images/image14.jpeg",
     text: "The most amazing hotel experience I've had. The views are breathtaking and the service is impeccable.",
   },
   {
     name: "Michael Chen",
     role: "Tourist",
-    image: "/testimonial2.jpg",
+    image: "/images/image14.jpeg",
     text: "Perfect location, wonderful staff, and the rooms are absolutely beautiful. Can't wait to come back!",
   },
   {
     name: "Emma Williams",
     role: "Honeymoon Guest",
-    image: "/testimonial3.jpg",
+    image: "/images/image14.jpeg",
     text: "Our honeymoon was magical thanks to Planete Hotel. The attention to detail is outstanding.",
   },
 ];

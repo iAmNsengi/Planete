@@ -5,36 +5,46 @@ import { Highlight } from "../ui/hero-highlight";
 
 const images = [
   {
-    src: "/gallery/img1.jpg",
+    src: "/images/room1.jpeg",
     title: "Lake View Suite",
     category: "Rooms",
   },
   {
-    src: "/gallery/img2.jpg",
+    src: "/images/image2.jpeg",
     title: "Infinity Pool",
     category: "Amenities",
   },
   {
-    src: "/gallery/img3.jpg",
+    src: "/images/image3.jpeg",
     title: "Restaurant",
     category: "Dining",
   },
+
   {
-    src: "/gallery/img4.jpg",
-    title: "Sunset Terrace",
-    category: "Views",
-  },
-  {
-    src: "/gallery/img5.jpg",
+    src: "/images/image8.jpeg",
     title: "Birdhouse Interior",
     category: "Rooms",
   },
   {
-    src: "/gallery/img6.jpg",
+    src: "/landing3.JPG",
     title: "Pod Suite",
     category: "Rooms",
   },
-  // Add more images as needed
+  {
+    src: "/images/room3.jpeg",
+    title: "Sunset Terrace",
+    category: "Rooms",
+  },
+  {
+    src: "/images/room2.jpeg",
+    title: "Birdhouse Interior",
+    category: "Rooms",
+  },
+  {
+    src: "/images/room1.jpeg",
+    title: "Pod Suite",
+    category: "Rooms",
+  },
 ];
 
 const categories = ["All", ...new Set(images.map((img) => img.category))];
