@@ -39,10 +39,10 @@ const activities = [
 const Activities = () => {
   return (
     <div
-      className="relative h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md"
+      className="relative min-h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md py-16"
       id="activities"
     >
-      <div className="w-full absolute inset-0 h-screen">
+      <div className="w-full absolute inset-0 h-full">
         <SparklesCore
           id="tsparticles"
           background="transparent"
@@ -55,17 +55,17 @@ const Activities = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <h2 className="text-center text-white text-5xl md:text-4xl lg:text-7xl font-sans md:py-10 relative z-20 font-bold tracking-tight">
+        <h2 className="text-center text-white text-4xl md:text-5xl lg:text-7xl font-sans md:py-10 relative z-20 font-bold tracking-tight">
           Explore Our{"   "}
           <Highlight className="bg-cyan-800 text-white"> Activities</Highlight>
           <br />
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-10">
           {activities.map((activity, index) => (
             <motion.div
               key={index}
-              className="bg-white/10 backdrop-blur-lg rounded-lg overflow-hidden"
+              className="bg-white/10 backdrop-blur-lg rounded-lg overflow-hidden mx-auto w-full max-w-sm"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2 }}
