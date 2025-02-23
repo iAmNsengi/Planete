@@ -55,32 +55,36 @@ const BookingForm = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const StepIndicator = () => (
-    <div className="flex items-center justify-center mb-8">
-      {steps.map((s, index) => (
-        <div key={s.id} className="flex flex-col items-center">
-          <div className="flex items-center">
-            <div
-              className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                steps.findIndex((x) => x.id === step) >= index
-                  ? "bg-cyan-800 text-white"
-                  : "bg-gray-200 text-gray-600"
-              }`}
-            >
-              {s.number}
-            </div>
-            {index < steps.length - 1 && (
+    <div className="flex items-center justify-center mb-8 px-4 overflow-x-hidden">
+      <div className="flex items-center space-x-4 md:space-x-8">
+        {steps.map((s, index) => (
+          <div key={s.id} className="flex flex-col items-center min-w-fit">
+            <div className="flex items-center">
               <div
-                className={`w-32 h-1  ${
-                  steps.findIndex((x) => x.id === step) > index
-                    ? "bg-cyan-800"
-                    : "bg-gray-200"
+                className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center ${
+                  steps.findIndex((x) => x.id === step) >= index
+                    ? "bg-cyan-800 text-white"
+                    : "bg-gray-200 text-gray-600"
                 }`}
-              />
-            )}
+              >
+                {s.number}
+              </div>
+              {index < steps.length - 1 && (
+                <div
+                  className={`w-16 md:w-32 h-1 ${
+                    steps.findIndex((x) => x.id === step) > index
+                      ? "bg-cyan-800"
+                      : "bg-gray-200"
+                  }`}
+                />
+              )}
+            </div>
+            <span className="text-xs md:text-sm mt-2 text-gray-600 whitespace-nowrap">
+              {s.title}
+            </span>
           </div>
-          <span className="text-sm mt-2 text-gray-600 pr-10">{s.title}</span>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 
@@ -388,34 +392,84 @@ const RoomSelection = ({
   </div>
 );
 
-const Confirmation = ({ formData, onBack, onConfirm }: any) => (
-  <div className="space-y-4">
-    <h2 className="text-2xl font-bold mb-6">Confirm Booking</h2>
-    <div className="space-y-2">
-      <p>
-        Name: {formData.firstName} {formData.lastName}
-      </p>
-      <p>Email: {formData.email}</p>
-      <p>Check-in: {formData.checkIn}</p>
-      <p>Check-out: {formData.checkOut}</p>
-      <p>Room Type: {formData.roomType}</p>
-      <p>Guests: {formData.guests}</p>
+const Confirmation = ({ formData, onBack, onConfirm }: any) => {
+  // Calculate total days and amount
+  const calculateTotal = () => {
+    const checkIn = new Date(formData.checkIn);
+    const checkOut = new Date(formData.checkOut);
+    const diffTime = Math.abs(checkOut.getTime() - checkIn.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    const roomPrice =
+      rooms.find((room) => room.id === formData.roomType)?.price || "0";
+    const pricePerNight = parseInt(roomPrice.replace(/\D/g, "")); // Extract number from "$90/night"
+
+    return {
+      days: diffDays,
+      total: diffDays * pricePerNight,
+    };
+  };
+
+  const { days, total } = calculateTotal();
+
+  return (
+    <div className="space-y-4">
+      <h2 className="text-2xl font-bold mb-6">Confirm Booking</h2>
+      <div className="space-y-2">
+        <p className="text-cyan-900 font-bold">
+          Name:{" "}
+          <span className="font-light text-black">
+            {" "}
+            {formData.firstName} {formData.lastName}
+          </span>{" "}
+        </p>
+        <p className="text-cyan-900 font-bold">
+          Email:{" "}
+          <span className="font-light text-black">{formData.email} </span>
+        </p>
+        <p className="text-cyan-900 font-bold">
+          Check-in:
+          <span className="font-light text-black"> {formData.checkIn} </span>
+        </p>
+        <p className="text-cyan-900 font-bold">
+          Check-out:
+          <span className="font-light text-black"> {formData.checkOut} </span>
+        </p>
+        <p className="text-cyan-900 font-bold">
+          Room Type:{" "}
+          <span className="font-light text-black">{formData.roomType} </span>
+        </p>
+        <p className="text-cyan-900 font-bold">
+          Guests:{" "}
+          <span className="font-light text-black"> {formData.guests} </span>{" "}
+        </p>
+        <div className="mt-6 pt-4 border-t border-gray-200">
+          <p className="text-cyan-900 font-bold">
+            Length of Stay:{" "}
+            <span className="font-light text-black">{days} nights</span>
+          </p>
+          <p className="text-cyan-900 font-bold text-lg">
+            Total Amount:{" "}
+            <span className="font-light text-black">${total}</span>
+          </p>
+        </div>
+      </div>
+      <div className="flex gap-4">
+        <button
+          onClick={onBack}
+          className="w-full bg-gray-200 text-gray-800 py-2 rounded hover:bg-gray-300"
+        >
+          Back
+        </button>
+        <button
+          onClick={onConfirm}
+          className="w-full bg-cyan-800 text-white py-2 rounded hover:bg-cyan-900"
+        >
+          Confirm Booking
+        </button>
+      </div>
     </div>
-    <div className="flex gap-4">
-      <button
-        onClick={onBack}
-        className="w-full bg-gray-200 text-gray-800 py-2 rounded hover:bg-gray-300"
-      >
-        Back
-      </button>
-      <button
-        onClick={onConfirm}
-        className="w-full bg-cyan-800 text-white py-2 rounded hover:bg-cyan-900"
-      >
-        Confirm Booking
-      </button>
-    </div>
-  </div>
-);
+  );
+};
 
 export default BookingForm;
