@@ -12,7 +12,7 @@ const Map: React.FC = () => {
       animate="visible"
     >
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-center text-white text-5xl md:text-4xl lg:text-7xl font-sans md:py-10 relative z-20 font-bold tracking-tight">
+        <h2 className="text-center text-black text-5xl md:text-4xl lg:text-7xl font-sans md:py-10 relative z-20 font-bold tracking-tight">
           Find Us {"  "}
           <Highlight className="bg-cyan-800 text-white">Here</Highlight>
           <br />
@@ -26,17 +26,17 @@ const Map: React.FC = () => {
               </h3>
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
-                  <FaMapMarkerAlt className="text-blue-500 text-xl" />
+                  <FaMapMarkerAlt className="text-cyan-800 text-xl" />
                   <p className="text-gray-600">Rubavu / Rugerero / Kabarora</p>
                 </div>
                 <div className="flex items-center space-x-4">
-                  <FaPhone className="text-blue-500 text-xl" />
+                  <FaPhone className="text-cyan-800 text-xl" />
                   <p className="text-gray-600">
                     +(250) 78-3584816 Or +(250) 78-8426737
                   </p>
                 </div>
                 <div className="flex items-center space-x-4">
-                  <FaEnvelope className="text-blue-500 text-xl" />
+                  <FaEnvelope className="text-cyan-800 text-xl" />
                   <p className="text-gray-600">maplanetehotel@gmail.com</p>
                 </div>
               </div>

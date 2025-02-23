@@ -46,6 +46,14 @@ const BookingForm = () => {
   const [step, setStep] = useState<
     "details" | "dates" | "rooms" | "confirmation"
   >("details");
+
+  const steps = [
+    { id: "details", title: "Personal Info", number: 1 },
+    { id: "dates", title: "Select Dates", number: 2 },
+    { id: "rooms", title: "Choose Room", number: 3 },
+    { id: "confirmation", title: "Confirm", number: 4 },
+  ];
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -57,42 +65,96 @@ const BookingForm = () => {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const validateStep = () => {
-    try {
-      switch (step) {
-        case "details":
-          z.object({
-            firstName: formSchema.shape.firstName,
-            lastName: formSchema.shape.lastName,
-            email: formSchema.shape.email,
-          }).parse(formData);
-          return true;
-        case "dates":
-          z.object({
-            checkIn: formSchema.shape.checkIn,
-            checkOut: formSchema.shape.checkOut,
-          }).parse(formData);
-          return true;
-        case "rooms":
-          z.object({
-            roomType: formSchema.shape.roomType,
-            guests: formSchema.shape.guests,
-          }).parse(formData);
-          return true;
-        default:
-          return true;
+  const StepIndicator = () => (
+    <div className="flex items-center justify-center mb-8">
+      {steps.map((s, index) => (
+        <div key={s.id} className="flex flex-col items-center">
+          <div className="flex items-center">
+            <div
+              className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                steps.findIndex((x) => x.id === step) >= index
+                  ? "bg-cyan-800 text-white"
+                  : "bg-gray-200 text-gray-600"
+              }`}
+            >
+              {s.number}
+            </div>
+            {index < steps.length - 1 && (
+              <div
+                className={`w-32 h-1  ${
+                  steps.findIndex((x) => x.id === step) > index
+                    ? "bg-cyan-800"
+                    : "bg-gray-200"
+                }`}
+              />
+            )}
+          </div>
+          <span className="text-sm mt-2 text-gray-600 pr-10">{s.title}</span>
+        </div>
+      ))}
+    </div>
+  );
+
+  const validateCurrentStep = () => {
+    const currentStepFields = {
+      details: ["firstName", "lastName", "email"],
+      dates: ["checkIn", "checkOut"],
+      rooms: ["roomType", "guests"],
+      confirmation: [],
+    };
+
+    const fieldsToValidate = currentStepFields[step];
+    const newErrors: Record<string, string> = {};
+
+    fieldsToValidate.forEach((field) => {
+      if (!formData[field as keyof typeof formData]) {
+        newErrors[field] = `${
+          field.charAt(0).toUpperCase() + field.slice(1)
+        } is required`;
       }
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        const newErrors: Record<string, string> = {};
-        error.errors.forEach((err) => {
-          if (err.path) {
-            newErrors[err.path[0]] = err.message;
-          }
-        });
-        setErrors(newErrors);
+    });
+
+    // Special validation for dates
+    if (step === "dates" && formData.checkIn && formData.checkOut) {
+      const checkIn = new Date(formData.checkIn);
+      const checkOut = new Date(formData.checkOut);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      if (checkIn < today) {
+        newErrors.checkIn = "Check-in date cannot be in the past";
       }
-      return false;
+      if (checkOut <= checkIn) {
+        newErrors.checkOut = "Check-out date must be after check-in date";
+      }
+    }
+
+    // Email validation for details step
+    if (
+      step === "details" &&
+      formData.email &&
+      !formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+    ) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleNextStep = () => {
+    if (validateCurrentStep()) {
+      const currentIndex = steps.findIndex((s) => s.id === step);
+      if (currentIndex < steps.length - 1) {
+        setStep(steps[currentIndex + 1].id as typeof step);
+      }
+    }
+  };
+
+  const handlePreviousStep = () => {
+    const currentIndex = steps.findIndex((s) => s.id === step);
+    if (currentIndex > 0) {
+      setStep(steps[currentIndex - 1].id as typeof step);
     }
   };
 
@@ -100,56 +162,14 @@ const BookingForm = () => {
     setFormData((prev) => ({ ...prev, ...data }));
   };
 
-  const renderStep = () => {
-    switch (step) {
-      case "details":
-        return (
-          <PersonalDetails
-            formData={formData}
-            updateFormData={updateFormData}
-            onNext={() => setStep("dates")}
-          />
-        );
-      case "dates":
-        return (
-          <DateSelection
-            formData={formData}
-            updateFormData={updateFormData}
-            onNext={() => setStep("rooms")}
-            onBack={() => setStep("details")}
-          />
-        );
-      case "rooms":
-        return (
-          <RoomSelection
-            formData={formData}
-            updateFormData={updateFormData}
-            onNext={() => setStep("confirmation")}
-            onBack={() => setStep("dates")}
-            errors={errors}
-            validateStep={validateStep}
-          />
-        );
-      case "confirmation":
-        return (
-          <Confirmation
-            formData={formData}
-            onBack={() => setStep("rooms")}
-            onConfirm={() => console.log("Booking confirmed:", formData)}
-          />
-        );
-    }
-  };
-
   return (
-    <div id="bookARoom" className="min-h-screen h-full bg-gray-100 py-20">
+    <div id="bookARoom" className="min-h-screen bg-gray-50 py-20">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-center text-black text-5xl md:text-4xl lg:text-7xl font-sans md:py-10 relative z-20 font-bold tracking-tight">
-          Book Your {"  "}
-          <Highlight className="bg-cyan-800 text-white">Perfect Stay</Highlight>
-          <br />
-        </h2>
-        <div className="max-w-3xl mx-auto pt-24">
+        <h1 className="text-4xl font-bold text-center mb-12">
+          Book Your Perfect Stay
+        </h1>
+        <div className="max-w-3xl mx-auto">
+          <StepIndicator />
           <AnimatePresence mode="wait">
             <motion.div
               key={step}
@@ -158,7 +178,39 @@ const BookingForm = () => {
               exit={{ opacity: 0, x: -20 }}
               className="bg-white rounded-xl shadow-lg p-8"
             >
-              {renderStep()}
+              {step === "details" && (
+                <PersonalDetails
+                  formData={formData}
+                  updateFormData={updateFormData}
+                  errors={errors}
+                  onNext={handleNextStep}
+                />
+              )}
+              {step === "dates" && (
+                <DateSelection
+                  formData={formData}
+                  updateFormData={updateFormData}
+                  errors={errors}
+                  onNext={handleNextStep}
+                  onBack={handlePreviousStep}
+                />
+              )}
+              {step === "rooms" && (
+                <RoomSelection
+                  formData={formData}
+                  updateFormData={updateFormData}
+                  errors={errors}
+                  onNext={handleNextStep}
+                  onBack={handlePreviousStep}
+                />
+              )}
+              {step === "confirmation" && (
+                <Confirmation
+                  formData={formData}
+                  onBack={handlePreviousStep}
+                  onConfirm={() => console.log("Booking confirmed:", formData)}
+                />
+              )}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -168,30 +220,51 @@ const BookingForm = () => {
 };
 
 // Step Components
-const PersonalDetails = ({ formData, updateFormData, onNext }: any) => (
+const PersonalDetails = ({ formData, updateFormData, errors, onNext }: any) => (
   <div className="space-y-4">
     <h2 className="text-2xl font-bold mb-6">Personal Details</h2>
-    <input
-      type="text"
-      placeholder="First Name"
-      value={formData.firstName}
-      onChange={(e) => updateFormData({ firstName: e.target.value })}
-      className="w-full p-2 border rounded"
-    />
-    <input
-      type="text"
-      placeholder="Last Name"
-      value={formData.lastName}
-      onChange={(e) => updateFormData({ lastName: e.target.value })}
-      className="w-full p-2 border rounded"
-    />
-    <input
-      type="email"
-      placeholder="Email"
-      value={formData.email}
-      onChange={(e) => updateFormData({ email: e.target.value })}
-      className="w-full p-2 border rounded"
-    />
+    <div>
+      <input
+        type="text"
+        placeholder="First Name"
+        value={formData.firstName}
+        onChange={(e) => updateFormData({ firstName: e.target.value })}
+        className={`w-full p-2 border rounded ${
+          errors.firstName ? "border-red-500" : ""
+        }`}
+      />
+      {errors.firstName && (
+        <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>
+      )}
+    </div>
+    <div>
+      <input
+        type="text"
+        placeholder="Last Name"
+        value={formData.lastName}
+        onChange={(e) => updateFormData({ lastName: e.target.value })}
+        className={`w-full p-2 border rounded ${
+          errors.lastName ? "border-red-500" : ""
+        }`}
+      />
+      {errors.lastName && (
+        <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>
+      )}
+    </div>
+    <div>
+      <input
+        type="email"
+        placeholder="Email"
+        value={formData.email}
+        onChange={(e) => updateFormData({ email: e.target.value })}
+        className={`w-full p-2 border rounded ${
+          errors.email ? "border-red-500" : ""
+        }`}
+      />
+      {errors.email && (
+        <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+      )}
+    </div>
     <button
       onClick={onNext}
       className="w-full bg-cyan-800 text-white py-2 rounded hover:bg-cyan-900"
@@ -201,22 +274,46 @@ const PersonalDetails = ({ formData, updateFormData, onNext }: any) => (
   </div>
 );
 
-const DateSelection = ({ formData, updateFormData, onNext, onBack }: any) => (
+const DateSelection = ({
+  formData,
+  updateFormData,
+  onNext,
+  onBack,
+  errors,
+}: any) => (
   <div className="space-y-4">
-    <h2 className="text-2xl font-bold mb-6">Select Dates</h2>
-    <input
-      type="date"
-      value={formData.checkIn}
-      onChange={(e) => updateFormData({ checkIn: e.target.value })}
-      className="w-full p-2 border rounded"
-    />
-    <input
-      type="date"
-      value={formData.checkOut}
-      onChange={(e) => updateFormData({ checkOut: e.target.value })}
-      className="w-full p-2 border rounded"
-    />
-    <div className="flex gap-4">
+    <h2 className="text-2xl font-bold mb-6">Select Your Dates</h2>
+    <div>
+      <label className="block text-gray-700 mb-2">Check-in Date</label>
+      <input
+        type="date"
+        value={formData.checkIn}
+        min={new Date().toISOString().split("T")[0]}
+        onChange={(e) => updateFormData({ checkIn: e.target.value })}
+        className={`w-full p-2 border rounded ${
+          errors.checkIn ? "border-red-500" : ""
+        }`}
+      />
+      {errors.checkIn && (
+        <p className="text-red-500 text-sm mt-1">{errors.checkIn}</p>
+      )}
+    </div>
+    <div>
+      <label className="block text-gray-700 mb-2">Check-out Date</label>
+      <input
+        type="date"
+        value={formData.checkOut}
+        min={formData.checkIn || new Date().toISOString().split("T")[0]}
+        onChange={(e) => updateFormData({ checkOut: e.target.value })}
+        className={`w-full p-2 border rounded ${
+          errors.checkOut ? "border-red-500" : ""
+        }`}
+      />
+      {errors.checkOut && (
+        <p className="text-red-500 text-sm mt-1">{errors.checkOut}</p>
+      )}
+    </div>
+    <div className="flex gap-4 pt-4">
       <button
         onClick={onBack}
         className="w-full bg-gray-200 text-gray-800 py-2 rounded hover:bg-gray-300"
@@ -239,7 +336,6 @@ const RoomSelection = ({
   onNext,
   onBack,
   errors,
-  validateStep,
 }: any) => (
   <div className="space-y-6">
     <h2 className="text-2xl font-bold mb-6">Select Your Room</h2>
@@ -292,9 +388,7 @@ const RoomSelection = ({
         Back
       </button>
       <button
-        onClick={() => {
-          if (validateStep()) onNext();
-        }}
+        onClick={onNext}
         className="w-full bg-cyan-800 text-white py-2 rounded hover:bg-cyan-900"
       >
         Next

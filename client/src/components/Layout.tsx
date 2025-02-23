@@ -35,7 +35,7 @@ const Layout = () => {
       <div className="bg-gradient-to-b from-gray-100 to-cyan-900">
         <BookingForm />
       </div>
-      <div className="bg-gradient-to-b from-cyan-900 to-white">
+      <div className="bg-white">
         <Map />
       </div>
       <FloatingWhatsApp
