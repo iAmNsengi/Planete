@@ -1,22 +1,25 @@
+"use client";
 import { motion } from "framer-motion";
 import { BackgroundBeams } from "./ui/background-beams";
 
 const Hero = () => {
   return (
-    <div className="h-screen w-full relative overflow-hidden">
-      {/* Background Image */}
+    <div className="relative h-screen w-full overflow-hidden">
+      {/* Background Image with better mobile handling */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('/landing2.JPG')",
-          backgroundAttachment: "fixed",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundAttachment: "initial", // Changed from fixed for better mobile support
         }}
       >
         <div className="absolute inset-0 bg-black/50" />
       </div>
 
       <motion.div
-        className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4"
+        className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
