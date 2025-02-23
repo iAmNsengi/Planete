@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
               alt="Planete Hotel Logo"
               className="w-40 h-auto mb-4 "
             />
-            <p className="text-sm text-gray-400 text-center md:text-left">
+            <p className="text-sm text-white text-center md:text-left">
               Your home away from home.
             </p>
           </motion.div>
