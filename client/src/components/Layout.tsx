@@ -11,8 +11,16 @@ import { FloatingWhatsApp } from "react-floating-whatsapp";
 import OurRooms from "./OurRooms";
 import { PatternOverlay } from "./ui/pattern-overlay";
 import SocialMediaSidebar from "./SocialMediaSidebar";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const Layout = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <div className="bg-gradient-to-b from-gray-50 to-white relative">
       <PatternOverlay />
@@ -25,7 +33,7 @@ const Layout = () => {
       <div className="bg-gradient-to-b from-gray-50 to-cyan-900">
         <OurRooms />
       </div>
-      <div className="bg-gradient-to-b from-cyan-900 to-gray-50">
+      <div className="bg-white">
         <Activities />
       </div>
       <div className="bg-gradient-to-b from-gray-50 to-white">
