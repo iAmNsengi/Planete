@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer";
 import { PatternOverlay } from "../components/ui/pattern-overlay";
+import { Highlight } from "../components/ui/hero-highlight";
 
 interface GalleryImage {
   _id: string;
@@ -51,12 +52,12 @@ const Gallery: React.FC = () => {
   }
 
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-white relative">
+    <div className="bg-white relative">
       <PatternOverlay />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-cyan-900 to-blue-900">
-        <div className="absolute inset-0 bg-black opacity-50"></div>
+      {/* Modern Hero Section */}
+      <section className="relative pt-32 pb-20 bg-white">
+        <div className="absolute inset-0 bg-black/5"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -64,10 +65,11 @@ const Gallery: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Photo Gallery
+            <h1 className="text-black text-5xl md:text-4xl lg:text-7xl font-sans md:py-10 relative z-20 font-bold tracking-tight mb-6">
+              Photo {"  "}
+              <Highlight>Gallery</Highlight>
             </h1>
-            <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Explore our beautiful hotel through stunning photographs
             </p>
           </motion.div>
