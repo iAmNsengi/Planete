@@ -13,6 +13,10 @@ app.use(express.json());
 
 app.use("/api/users", require("./routes/auth"));
 app.use("/api/emails", require("./routes/email"));
+app.use("/api/settings", require("./routes/settings"));
+app.use("/api/rooms", require("./routes/rooms"));
+app.use("/api/bookings", require("./routes/bookings"));
+app.use("/api/gallery", require("./routes/gallery"));
 
 mongoose
   .connect(process.env.MONGODB_URI)

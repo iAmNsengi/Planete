@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FiHome, FiUser, FiMail } from "react-icons/fi";
-import Navbar from "../components/Navbar";
+import SocialMediaSidebar from "../components/SocialMediaSidebar";
 
 interface MessageType {
   firstname: string;
@@ -79,7 +79,9 @@ const Dashboard: React.FC = () => {
 
   const renderDashboard = () => (
     <div className="bg-gray-800 rounded-lg shadow-lg p-6 mt-8">
-      <h3 className="text-xl font-semibold mb-4">Random Message From Your Site:</h3>
+      <h3 className="text-xl font-semibold mb-4">
+        Random Message From Your Site:
+      </h3>
       {isLoading ? (
         <p className="text-center text-gray-400">Loading message...</p>
       ) : randomMessage ? (
@@ -195,7 +197,8 @@ const Dashboard: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-gray-900 text-white">
+    <div className="flex flex-col md:flex-row min-h-screen bg-gray-900 text-white relative">
+      <SocialMediaSidebar />
       <motion.aside
         initial={{ x: -300 }}
         animate={{ x: 0 }}
@@ -227,8 +230,7 @@ const Dashboard: React.FC = () => {
         </nav>
       </motion.aside>
 
-      <main className="flex-grow p-6 py-20">
-        <Navbar />
+      <main className="flex-grow p-6">
         <motion.h2
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}

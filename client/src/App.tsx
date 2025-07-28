@@ -3,12 +3,43 @@ import {
   RouterProvider,
   Navigate,
   useNavigate,
+  useLocation,
 } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+// React Query will be added later when the package is installed
+// import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Layout from "./components/Layout";
+import PageLayout from "./components/PageLayout";
 import { Login } from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Rooms from "./pages/Rooms";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Services from "./pages/Services";
+import Gallery from "./pages/Gallery";
+import Booking from "./pages/Booking";
+
+// React Query client will be created when package is installed
+// const queryClient = new QueryClient({
+//   defaultOptions: {
+//     queries: {
+//       staleTime: 5 * 60 * 1000, // 5 minutes
+//       retry: 1,
+//     },
+//   },
+// });
+
+// Auto-scroll to top component
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 const AuthChecker = ({ children }: { children: React.ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -65,6 +96,54 @@ const router = createBrowserRouter([
         element: <Layout />,
       },
       {
+        path: "about",
+        element: (
+          <PageLayout>
+            <About />
+          </PageLayout>
+        ),
+      },
+      {
+        path: "rooms",
+        element: (
+          <PageLayout>
+            <Rooms />
+          </PageLayout>
+        ),
+      },
+      {
+        path: "services",
+        element: (
+          <PageLayout>
+            <Services />
+          </PageLayout>
+        ),
+      },
+      {
+        path: "gallery",
+        element: (
+          <PageLayout>
+            <Gallery />
+          </PageLayout>
+        ),
+      },
+      {
+        path: "contact",
+        element: (
+          <PageLayout>
+            <Contact />
+          </PageLayout>
+        ),
+      },
+      {
+        path: "booking",
+        element: (
+          <PageLayout>
+            <Booking />
+          </PageLayout>
+        ),
+      },
+      {
         path: "login",
         element: <Login />,
       },
@@ -85,5 +164,10 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <ScrollToTop />
+      <RouterProvider router={router} />
+    </>
+  );
 }

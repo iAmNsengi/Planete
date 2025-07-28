@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   IconDashboard,
@@ -14,15 +14,14 @@ const Navbar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const navigate = useNavigate();
 
   const navItems = [
-    { href: "about", label: "About" },
-    { href: "rooms", label: "Rooms" },
-    { href: "gallery", label: "Gallery" },
-    { href: "activities", label: "Activities" },
-    { href: "findUs", label: "Contact" },
-    { href: "bookARoom", label: "Book Now", isButton: true },
+    { href: "/about", label: "About" },
+    { href: "/rooms", label: "Rooms" },
+    { href: "/services", label: "Services" },
+    { href: "/gallery", label: "Gallery" },
+    { href: "/contact", label: "Contact" },
+    { href: "/booking", label: "Book Now", isButton: true },
   ];
 
   useEffect(() => {
@@ -55,78 +54,51 @@ const Navbar = () => {
     checkAuthentication();
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    setIsMobileMenuOpen(false);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
-
-  const handleNavigation = (href: string) => {
-    if (href === "login" || href === "dashboard") {
-      navigate(`/${href}`);
-    } else {
-      scrollToSection(href);
-    }
-  };
-
   return (
     <>
       <nav
-        className={`fixed w-full z-50 transition-all duration-300 ${
-          isScrolled || isMobileMenuOpen
-            ? "bg-white shadow-lg"
-            : "bg-transparent"
-        }`}
+        className={`fixed w-full z-50 transition-all duration-300 bg-white shadow-lg`}
       >
         <div className="max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <img
-                src="/logo.png"
-                alt="Planete Hotel"
-                className="h-12 w-auto cursor-pointer"
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              />
+              <Link to="/">
+                <img
+                  src="/logo.png"
+                  alt="Planete Hotel"
+                  className="h-12 w-auto cursor-pointer"
+                />
+              </Link>
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
-                <button
+                <Link
                   key={item.label}
-                  onClick={() => handleNavigation(item.href)}
+                  to={item.href}
                   className={`${
                     item.isButton
                       ? "bg-cyan-800 text-white px-6 py-2 rounded-full hover:bg-cyan-900 transition-colors"
-                      : `text-${
-                          isScrolled ? "gray-800" : "white"
-                        } hover:text-cyan-800 transition-colors`
+                      : `text-gray-800 hover:text-cyan-800 transition-colors`
                   }`}
                 >
                   {item.label}
-                </button>
+                </Link>
               ))}
               {isAuthenticated ? (
-                <button
-                  onClick={() => handleNavigation("dashboard")}
-                  className="flex items-center space-x-1 text-cyan-800"
+                <Link
+                  to="/dashboard"
+                  className="flex items-center space-x-1 text-cyan-800 hover:text-cyan-800"
                 >
                   <IconDashboard size={20} />
                   <span>Dashboard</span>
-                </button>
+                </Link>
               ) : (
-                <button
-                  onClick={() => handleNavigation("login")}
-                  className="text-cyan-800"
-                >
+                <Link to="login" className="text-cyan-800">
                   <IconLogin size={24} />
-                </button>
+                </Link>
               )}
             </div>
 
@@ -161,9 +133,9 @@ const Navbar = () => {
             >
               <div className="px-4 pt-2 pb-6 space-y-4">
                 {navItems.map((item) => (
-                  <button
+                  <Link
                     key={item.label}
-                    onClick={() => handleNavigation(item.href)}
+                    to={item.href}
                     className={`block w-full text-left px-4 py-2 ${
                       item.isButton
                         ? "bg-cyan-800 text-white rounded-full text-center"
@@ -171,24 +143,24 @@ const Navbar = () => {
                     }`}
                   >
                     {item.label}
-                  </button>
+                  </Link>
                 ))}
                 {isAuthenticated ? (
-                  <button
-                    onClick={() => handleNavigation("dashboard")}
+                  <Link
+                    to="dashboard"
                     className="flex items-center space-x-2 px-4 py-2 text-cyan-800 w-full"
                   >
                     <IconDashboard size={20} />
                     <span>Dashboard</span>
-                  </button>
+                  </Link>
                 ) : (
-                  <button
-                    onClick={() => handleNavigation("login")}
+                  <Link
+                    to="login"
                     className="flex items-center space-x-2 px-4 py-2 text-cyan-800 w-full"
                   >
                     <IconLogin size={20} />
                     <span>Login</span>
-                  </button>
+                  </Link>
                 )}
               </div>
             </motion.div>
