@@ -2,6 +2,7 @@
 import { cn } from "../../lib/utils";
 import { useMotionValue, motion, useMotionTemplate } from "framer-motion";
 import React from "react";
+import { theme } from "../../utils/theme";
 
 export const HeroHighlight = ({
   children,
@@ -85,7 +86,10 @@ export const Highlight = ({
         backgroundPosition: "left center",
         display: "inline",
       }}
-      className={cn(`relative inline-block pb-1 px-1 rounded-lg `, className)}
+      className={cn(
+        `relative inline-block pb-1 px-1 rounded-lg text-white bg-red-600`,
+        className
+      )}
     >
       {children}
     </motion.span>
