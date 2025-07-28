@@ -9,6 +9,7 @@ import {
   IconX,
 } from "@tabler/icons-react";
 import axios from "axios";
+import { theme } from "../utils/theme";
 
 const Navbar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -62,13 +63,18 @@ const Navbar = () => {
         <div className="max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
-            <div className="flex-shrink-0">
+            <div className="flex items-center space-x-2 cursor-pointer">
               <Link to="/">
                 <img
                   src="/logo.png"
                   alt="Planete Hotel"
                   className="h-12 w-auto cursor-pointer"
                 />
+              </Link>
+              <Link to="/">
+                <p className="text-blue-600 text-md font-bold">
+                  PLANETE <span className="text-red-500">HOTEL</span>
+                </p>
               </Link>
             </div>
 
@@ -80,24 +86,54 @@ const Navbar = () => {
                   to={item.href}
                   className={`${
                     item.isButton
-                      ? "bg-cyan-800 text-white px-6 py-2 rounded-full hover:bg-cyan-900 transition-colors"
-                      : `text-gray-800 hover:text-cyan-800 transition-colors`
+                      ? "text-white px-6 py-2 rounded-full transition-colors"
+                      : `text-gray-800 transition-colors`
                   }`}
+                  style={
+                    {
+                      backgroundColor: item.isButton
+                        ? theme.colors.primary[800]
+                        : "transparent",
+                      color: item.isButton
+                        ? "white"
+                        : theme.colors.neutral[800],
+                      "--tw-hover-bg-opacity": item.isButton ? "0.9" : "1",
+                    } as React.CSSProperties
+                  }
+                  onMouseEnter={(e) => {
+                    if (item.isButton) {
+                      e.currentTarget.style.backgroundColor =
+                        theme.colors.primary[900];
+                    } else {
+                      e.currentTarget.style.color = theme.colors.primary[800];
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (item.isButton) {
+                      e.currentTarget.style.backgroundColor =
+                        theme.colors.primary[800];
+                    } else {
+                      e.currentTarget.style.color = theme.colors.neutral[800];
+                    }
+                  }}
                 >
                   {item.label}
                 </Link>
               ))}
-              {isAuthenticated ? (
+              {isAuthenticated && (
                 <Link
                   to="/dashboard"
-                  className="flex items-center space-x-1 text-cyan-800 hover:text-cyan-800"
+                  className="flex items-center space-x-1 transition-colors"
+                  style={{ color: theme.colors.primary[800] }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = theme.colors.primary[900];
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = theme.colors.primary[800];
+                  }}
                 >
                   <IconDashboard size={20} />
                   <span>Dashboard</span>
-                </Link>
-              ) : (
-                <Link to="login" className="text-cyan-800">
-                  <IconLogin size={24} />
                 </Link>
               )}
             </div>
@@ -136,11 +172,35 @@ const Navbar = () => {
                   <Link
                     key={item.label}
                     to={item.href}
-                    className={`block w-full text-left px-4 py-2 ${
+                    className={`block w-full text-left px-4 py-2 transition-colors ${
                       item.isButton
-                        ? "bg-cyan-800 text-white rounded-full text-center"
-                        : "text-gray-800 hover:text-cyan-800"
+                        ? "text-white rounded-full text-center"
+                        : "text-gray-800"
                     }`}
+                    style={{
+                      backgroundColor: item.isButton
+                        ? theme.colors.primary[800]
+                        : "transparent",
+                      color: item.isButton
+                        ? "white"
+                        : theme.colors.neutral[800],
+                    }}
+                    onMouseEnter={(e) => {
+                      if (item.isButton) {
+                        e.currentTarget.style.backgroundColor =
+                          theme.colors.primary[900];
+                      } else {
+                        e.currentTarget.style.color = theme.colors.primary[800];
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (item.isButton) {
+                        e.currentTarget.style.backgroundColor =
+                          theme.colors.primary[800];
+                      } else {
+                        e.currentTarget.style.color = theme.colors.neutral[800];
+                      }
+                    }}
                   >
                     {item.label}
                   </Link>
@@ -148,7 +208,14 @@ const Navbar = () => {
                 {isAuthenticated ? (
                   <Link
                     to="dashboard"
-                    className="flex items-center space-x-2 px-4 py-2 text-cyan-800 w-full"
+                    className="flex items-center space-x-2 px-4 py-2 w-full transition-colors"
+                    style={{ color: theme.colors.primary[800] }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = theme.colors.primary[900];
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = theme.colors.primary[800];
+                    }}
                   >
                     <IconDashboard size={20} />
                     <span>Dashboard</span>
@@ -156,7 +223,14 @@ const Navbar = () => {
                 ) : (
                   <Link
                     to="login"
-                    className="flex items-center space-x-2 px-4 py-2 text-cyan-800 w-full"
+                    className="flex items-center space-x-2 px-4 py-2 w-full transition-colors"
+                    style={{ color: theme.colors.primary[800] }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = theme.colors.primary[900];
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = theme.colors.primary[800];
+                    }}
                   >
                     <IconLogin size={20} />
                     <span>Login</span>
