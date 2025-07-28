@@ -6,6 +6,7 @@ import {
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
+import { theme } from "../utils/theme";
 
 const Footer: React.FC = () => {
   const socialIcons = [
@@ -16,7 +17,10 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="w-full bg-cyan-900  relative py-16 px-4">
+    <footer
+      className="w-full relative py-16 px-4"
+      style={{ backgroundColor: theme.colors.primary[800] }}
+    >
       <div className="max-w-7xl mx-auto text-white">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <motion.div
@@ -31,7 +35,7 @@ const Footer: React.FC = () => {
               className="w-40 h-auto mb-4 "
             />
             <p className="text-sm text-white text-center md:text-left">
-              Your home away from home.
+              Planete Hotel Rwanda.
             </p>
           </motion.div>
 
@@ -77,7 +81,8 @@ const Footer: React.FC = () => {
               key={label}
               href={href}
               aria-label={label}
-              className="text-white hover:text-white transition-colors duration-300"
+              className="text-white hover:text-yellow-300 transition-colors duration-300"
+              style={{ "--tw-text-opacity": 1 } as React.CSSProperties}
             >
               <Icon className="text-2xl" />
             </a>
@@ -100,12 +105,12 @@ const Footer: React.FC = () => {
           © {new Date().getFullYear()} Planete Hotel. All rights reserved.
           Designed by{" "}
           <a
-            className="text-white  hover:text-blue-300 transition-colors duration-300 underline"
+            className="text-white hover:text-yellow-300 transition-colors duration-300 underline"
             href="https://keyypress.onrender.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Keyy<span className={"text-orange-600 font-bold"}>Press</span>
+            Keyy<span className="text-orange-600 font-bold">Press</span>
           </a>
         </motion.div>
       </div>
