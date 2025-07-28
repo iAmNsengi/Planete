@@ -57,19 +57,19 @@ const SocialMediaSidebar: React.FC = () => {
       className="fixed right-0 top-1/3 transform -translate-y-1/2 z-50 hidden lg:block"
     >
       <div className="flex flex-col space-y-4 p-2 bg-white/90 backdrop-blur-sm rounded-l-lg shadow-lg border-l border-t border-b border-gray-200">
-        {socialIcons.map(({ Icon, href, label, color }, index) => (
+        {socialIcons.map((site, index) => (
           <motion.a
-            key={label}
-            href={href}
-            aria-label={label}
-            className={`p-3 bg-${color} rounded-full shadow-md hover:shadow-lg transition-all duration-300 text-${color} hover:scale-110`}
+            key={site.label}
+            href={site.href}
+            aria-label={site.label}
+            className={`p-3 bg-white d-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110 rounded-lg`}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
           >
-            <Icon className="text-xl text-${color}" />
+            <site.Icon className={`text-xl text-${site.color}`} />
           </motion.a>
         ))}
       </div>
