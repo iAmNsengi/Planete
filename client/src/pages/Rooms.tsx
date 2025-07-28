@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { PatternOverlay } from "../components/ui/pattern-overlay";
 import { FiUsers, FiMaximize2 } from "react-icons/fi";
+import { Highlight } from "../components/ui/hero-highlight";
 
 interface Room {
   _id: string;
@@ -53,12 +54,12 @@ const Rooms: React.FC = () => {
   }
 
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-white relative">
+    <div className="bg-white relative">
       <PatternOverlay />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-cyan-900 to-blue-900">
-        <div className="absolute inset-0 bg-black opacity-50"></div>
+      {/* Modern Hero Section */}
+      <section className="relative pt-32 pb-20 bg-white">
+        <div className="absolute inset-0 bg-black/5"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -66,10 +67,11 @@ const Rooms: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Our Rooms & Suites
+            <h1 className="text-black text-5xl md:text-4xl lg:text-7xl font-sans md:py-10 relative z-20 font-bold tracking-tight mb-6">
+              Our {"  "}
+              <Highlight>Rooms & Suites</Highlight>
             </h1>
-            <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Experience luxury and comfort in our carefully designed
               accommodations
             </p>
