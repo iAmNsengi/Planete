@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer";
 import { PatternOverlay } from "../components/ui/pattern-overlay";
-import { FiMapPin, FiPhone, FiMail, FiClock } from "react-icons/fi";
+import { FiMapPin, FiPhone, FiMail } from "react-icons/fi";
+import { Highlight } from "../components/ui/hero-highlight";
+import { theme } from "../utils/theme";
 
 interface Settings {
   hotelName: string;
@@ -44,7 +46,7 @@ const About: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <div className="min-h-screen bg-white">
         <div className="flex items-center justify-center min-h-screen">
           <div className="rounded-md h-12 w-12 border-4 border-t-4 border-cyan-500 animate-spin"></div>
         </div>
@@ -53,12 +55,12 @@ const About: React.FC = () => {
   }
 
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-white relative">
+    <div className="bg-white relative">
       <PatternOverlay />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-cyan-900 to-blue-900">
-        <div className="absolute inset-0 bg-black opacity-50"></div>
+      {/* Modern Hero Section */}
+      <section className="relative pt-32 pb-20 bg-white">
+        <div className="absolute inset-0 bg-black/5"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -66,10 +68,11 @@ const About: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              About {settings?.hotelName || "Planete Hotel"}
+            <h1 className="text-black text-5xl md:text-4xl lg:text-7xl font-sans md:py-10 relative z-20 font-bold tracking-tight mb-6">
+              About {"  "}
+              <Highlight>{settings?.hotelName || "Planete Hotel"}</Highlight>
             </h1>
-            <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Discover luxury, comfort, and exceptional service in the heart of
               Rwanda
             </p>
@@ -78,13 +81,29 @@ const About: React.FC = () => {
       </section>
 
       {/* About Content */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 relative overflow-hidden">
+        {/* Animated background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-yellow-50 via-orange-50 to-yellow-100" />
+
+        {/* Sparkles effect */}
+        <div className="w-full absolute inset-0 h-full">
+          <div className="w-full h-full opacity-20">
+            {/* Custom sparkles effect */}
+            <div className="absolute top-1/4 right-1/4 w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse"></div>
+            <div className="absolute top-1/3 left-1/3 w-1 h-1 bg-orange-400 rounded-full animate-pulse delay-1000"></div>
+            <div className="absolute top-1/2 right-1/2 w-1.5 h-1.5 bg-yellow-500 rounded-full animate-pulse delay-500"></div>
+            <div className="absolute top-2/3 left-1/4 w-1 h-1 bg-orange-300 rounded-full animate-pulse delay-1500"></div>
+            <div className="absolute top-3/4 right-1/3 w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse delay-2000"></div>
+          </div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
+              className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-white/20"
             >
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
                 Our Story
@@ -234,7 +253,10 @@ const About: React.FC = () => {
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 className="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow"
               >
-                <div className="text-cyan-600 mb-4">
+                <div
+                  className="mb-4"
+                  style={{ color: theme.colors.primary[600] }}
+                >
                   <contact.icon size={32} />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
@@ -242,7 +264,14 @@ const About: React.FC = () => {
                 </h3>
                 <a
                   href={contact.link}
-                  className="text-gray-600 hover:text-cyan-600 transition-colors"
+                  className="text-gray-600 transition-colors"
+                  style={{ "--tw-text-opacity": 1 } as React.CSSProperties}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = theme.colors.primary[600];
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = theme.colors.neutral[600];
+                  }}
                 >
                   {contact.content}
                 </a>
