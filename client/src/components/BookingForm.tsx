@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Highlight } from "./ui/hero-highlight";
-import { theme } from "../utils/theme";
 import {
   FaUser,
   FaCalendar,

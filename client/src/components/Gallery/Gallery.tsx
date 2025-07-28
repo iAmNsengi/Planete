@@ -81,13 +81,13 @@ const Gallery = () => {
     >
       <div className="max-w-7xl mx-auto">
         <motion.div className="text-center mb-16">
-          <h2
+          <motion.h2
             className="text-4xl md:text-6xl font-bold mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
             Our <Highlight>Gallery</Highlight>
-          </h2>
+          </motion.h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Explore the beauty and luxury of Planete Hotel through our stunning
             collection of images
