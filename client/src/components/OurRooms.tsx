@@ -2,7 +2,15 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Highlight } from "./ui/hero-highlight";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
-import { FaBed, FaUsers, FaWifi, FaCoffee, FaParking, FaShower } from "react-icons/fa";
+import { theme } from "../utils/theme";
+import {
+  FaBed,
+  FaUsers,
+  FaWifi,
+  FaCoffee,
+  FaParking,
+  FaShower,
+} from "react-icons/fa";
 
 const OurRooms: React.FC = () => {
   const rooms = [
@@ -42,7 +50,11 @@ const OurRooms: React.FC = () => {
         "Consisting of a bedroom and living room (which can host an extra king bed), the Bungalow is our most spacious unit designed for honeymooners or groups of friends.",
       price: "$150",
       originalPrice: "$200",
-      features: ["Spacious Living Area", "Perfect for Groups", "Premium Amenities"],
+      features: [
+        "Spacious Living Area",
+        "Perfect for Groups",
+        "Premium Amenities",
+      ],
       amenities: [FaBed, FaUsers, FaWifi, FaCoffee, FaParking, FaShower],
       maxGuests: 4,
       size: "45m²",
@@ -53,10 +65,21 @@ const OurRooms: React.FC = () => {
   return (
     <div
       id="rooms"
-      className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-cyan-900 via-cyan-800 to-cyan-900"
+      className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-white"
     >
+      {/* Parallax Background Image */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `linear-gradient(rgba(17, 63, 103, 0.7), rgba(52, 105, 154, 0.4)), url('/landing3.JPG')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+          filter: "blur(2px)",
+        }}
+      />
       <motion.div
-        className="max-w-7xl mx-auto"
+        className="max-w-7xl mx-auto relative z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -64,10 +87,11 @@ const OurRooms: React.FC = () => {
         <motion.div className="text-center mb-16">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-white">
             Our
-            <Highlight className="bg-white text-cyan-800"> Rooms</Highlight>
+            <Highlight className=" text-white"> Rooms</Highlight>
           </h1>
-          <p className="text-xl text-cyan-100 max-w-3xl mx-auto">
-            Experience comfort and luxury in our carefully designed accommodations
+          <p className="text-xl text-white max-w-3xl mx-auto">
+            Experience comfort and luxury in our carefully designed
+            accommodations
           </p>
         </motion.div>
 
@@ -87,23 +111,36 @@ const OurRooms: React.FC = () => {
                     </div>
                   )}
                   <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                    <span className="text-2xl font-bold text-cyan-800">{room.price}</span>
-                    <span className="text-sm text-gray-500 line-through ml-2">{room.originalPrice}</span>
+                    <span
+                      className="text-2xl font-bold"
+                      style={{ color: theme.colors.primary[800] }}
+                    >
+                      {room.price}
+                    </span>
+                    <span className="text-sm text-gray-500 line-through ml-2">
+                      {room.originalPrice}
+                    </span>
                   </div>
                 </CardItem>
-                
+
                 <div className="p-6">
                   <CardItem translateZ={50}>
                     <div className="mb-4">
-                      <h3 className="text-2xl font-bold text-gray-800 mb-1">{room.title}</h3>
-                      <p className="text-cyan-600 font-medium">{room.subtitle}</p>
+                      <h3 className="text-2xl font-bold text-blue-800 mb-1">
+                        {room.title}
+                      </h3>
+                      <p className="font-medium text-red-600">
+                        {room.subtitle}
+                      </p>
                     </div>
                   </CardItem>
-                  
+
                   <CardItem translateZ={60}>
-                    <p className="text-gray-600 mb-4 leading-relaxed">{room.description}</p>
+                    <p className="text-gray-600 mb-4 leading-relaxed">
+                      {room.description}
+                    </p>
                   </CardItem>
-                  
+
                   <CardItem translateZ={70}>
                     <div className="flex items-center justify-between mb-4 text-sm text-gray-500">
                       <span className="flex items-center">
@@ -113,21 +150,28 @@ const OurRooms: React.FC = () => {
                       <span>{room.size}</span>
                     </div>
                   </CardItem>
-                  
+
                   <CardItem translateZ={80}>
                     <div className="mb-4">
-                      <h4 className="font-semibold text-gray-800 mb-2">Amenities</h4>
+                      <h4 className="font-semibold text-gray-800 mb-2">
+                        Amenities
+                      </h4>
                       <div className="flex flex-wrap gap-2">
                         {room.amenities.map((Icon, idx) => (
-                          <div key={idx} className="flex items-center bg-gray-100 px-2 py-1 rounded-full text-xs">
-                            <Icon className="mr-1 text-cyan-600" />
-                            <span className="text-gray-600">{Icon.name.replace('Fa', '')}</span>
+                          <div
+                            key={idx}
+                            className="flex items-center bg-gray-100 px-2 py-1 rounded-full text-xs"
+                          >
+                            <Icon className="mr-1 text-yellow-600" />
+                            <span className="text-gray-600">
+                              {Icon.name.replace("Fa", "")}
+                            </span>
                           </div>
                         ))}
                       </div>
                     </div>
                   </CardItem>
-                  
+
                   <CardItem translateZ={90}>
                     <ul className="space-y-2 mb-6">
                       {room.features.map((feature, idx) => (
@@ -135,20 +179,22 @@ const OurRooms: React.FC = () => {
                           key={idx}
                           className="flex items-center text-sm text-gray-600"
                         >
-                          <span className="w-2 h-2 bg-cyan-600 rounded-full mr-3"></span>
+                          <span className="w-2 h-2 bg-yellow-600 rounded-full mr-3"></span>
                           {feature}
                         </li>
                       ))}
                     </ul>
                   </CardItem>
-                  
+
                   <CardItem translateZ={100}>
                     <div className="flex justify-between items-center">
                       <div>
-                        <span className="text-2xl font-bold text-cyan-800">{room.price}</span>
+                        <span className="text-2xl font-bold text-blue-800">
+                          {room.price}
+                        </span>
                         <span className="text-sm text-gray-500">/night</span>
                       </div>
-                      <button className="bg-cyan-800 hover:bg-cyan-900 text-white px-6 py-3 rounded-full transition-colors duration-300 transform hover:scale-105 shadow-lg">
+                      <button className="bg-red-600 text-white px-6 py-3 rounded-full transition-colors duration-300 transform hover:scale-105 shadow-lg">
                         Book Now
                       </button>
                     </div>
@@ -159,7 +205,7 @@ const OurRooms: React.FC = () => {
           ))}
         </div>
 
-        <motion.div 
+        <motion.div
           className="text-center mt-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -167,7 +213,7 @@ const OurRooms: React.FC = () => {
         >
           <a
             href="/rooms"
-            className="inline-block bg-white text-cyan-800 hover:bg-gray-100 font-bold py-4 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg"
+            className="inline-block bg-red-600 text-white font-bold py-4 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg"
           >
             View All Rooms
           </a>
